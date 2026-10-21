@@ -48,10 +48,28 @@ The rate limit lives in process memory, so it resets when the service restarts a
 | `SMTP_TIMEOUT_MS` | `10000` | |
 | `SUBSCRIBE_NOTIFY_EMAIL` | — | inbox that receives the notices |
 | `SUBSCRIBE_GLOBAL_MAX_PER_MINUTE` | `20` | cap across all visitors |
+| `OYSCAT_FORWARD_SECRET` | — | shared with the website; when set, requests without it get 403 and the forwarded visitor address keys the rate limit |
 
 `web/.env.development.local` (optional): `OYSCAT_API_URL`, and `OYSCAT_DEV_ALLOWED_ORIGINS` (comma-separated extra hosts such as a LAN IP; Next 16 blocks dev assets for hosts not listed).
 
-`OYSCAT_SITE_URL` (web, production): the public origin, e.g. `https://www.example.com`. Canonical, Open Graph, sitemap and structured-data URLs are built from it; when unset they follow the request's `X-Forwarded-Host`/`Host`.
+`OYSCAT_SITE_URL` (web, production): the public origin, e.g. `https://www.example.com`. Canonical, Open Graph, sitemap and structured-data URLs are built from it; when unset they use Vercel's production domain (`VERCEL_PROJECT_PRODUCTION_URL`) on Vercel, and otherwise the request's `X-Forwarded-Host`/`Host`.
+
+## Deploying on Vercel
+
+A Vercel project runs one app, so the website and the subscribe service are two projects created from this same repository.
+
+| | Website project | Subscribe service project |
+| --- | --- | --- |
+| Root Directory | `web` | `server` |
+| Framework Preset | Next.js | Express (detected) |
+| Environment variables | `OYSCAT_API_URL` = the service project's production URL, `OYSCAT_FORWARD_SECRET`, optionally `OYSCAT_SITE_URL` | `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `SUBSCRIBE_NOTIFY_EMAIL`, `OYSCAT_FORWARD_SECRET` |
+
+- Keep "Include files outside the root directory in the Build Step" enabled in both: the pnpm lockfile is at the repository root.
+- `OYSCAT_FORWARD_SECRET` must be the same long random string in both projects. Vercel rewrites `X-Forwarded-For` on the hop between the two deployments to the website's own address, so without it every visitor would share one rate-limit slot. It also keeps the public service URL from being used to mail the inbox directly.
+- Point `OYSCAT_API_URL` at the service's production domain, not a preview URL: previews sit behind Vercel Authentication by default.
+- Vercel's Express preset serves the default export of `server/src/app.js` (the first `app`/`index`/`server` file that imports express). `server/src/index.js` is only the local entry point.
+- On Vercel the per-IP limit lives in each function instance's memory, so it is per instance rather than global; the global cap still bounds the volume.
+- The service answers `GET /health` with `{"status":"ok"}`; every other path is a JSON 404, so its own URL shows no page.
 
 ## SEO
 
@@ -63,5 +81,5 @@ The rate limit lives in process memory, so it resets when the service restarts a
 
 ## Production notes
 
-- Put a reverse proxy in front of the Next server that **overwrites** `X-Forwarded-For` with the real client address. The Next route forwards whatever it receives, so a client-supplied header would otherwise pick its own rate-limit key. The global cap bounds the damage either way.
+- Self-hosting: put a reverse proxy in front of the Next server that **overwrites** `X-Forwarded-For` with the real client address. The Next route forwards whatever it receives, so a client-supplied header would otherwise pick its own rate-limit key. The global cap bounds the damage either way.
 - Outfit is self-hosted from `web/src/app/fonts/` (the same files Google Fonts serves) so builds don't need network access to Google.

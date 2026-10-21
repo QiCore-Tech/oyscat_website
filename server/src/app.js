@@ -1,4 +1,5 @@
 import express from "express"
+import { createRuntime } from "./runtime.js"
 import { createSubscribeHandler, sendError } from "./subscribe.js"
 
 export function createApp({ config, mailer, limiter, logger = console }) {
@@ -38,4 +39,16 @@ export function createApp({ config, mailer, limiter, logger = console }) {
   })
 
   return app
+}
+
+let vercelApp
+
+/**
+ * Vercel's Express preset deploys the first of app.js, index.js, server.js, src/app.js, … that imports express
+ * (this file) and serves its default export. The app is built on the first request from the project's
+ * environment variables, so importing this module (tests, the local server) has no side effects.
+ */
+export default function vercelHandler(req, res) {
+  vercelApp ??= createApp(createRuntime())
+  return vercelApp(req, res)
 }

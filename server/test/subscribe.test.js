@@ -1,6 +1,7 @@
 import assert from "node:assert/strict"
+import { createServer } from "node:http"
 import { after, beforeEach, describe, test } from "node:test"
-import { createApp } from "../src/app.js"
+import vercelHandler, { createApp } from "../src/app.js"
 import { loadConfig } from "../src/config.js"
 import { createRateLimiter } from "../src/rate-limit.js"
 
@@ -145,6 +146,58 @@ describe("POST /api/subscribe failure modes", () => {
     assert.equal(mailer.sent.length, 2)
     await server.close()
     server = undefined
+  })
+})
+
+describe("POST /api/subscribe with OYSCAT_FORWARD_SECRET", () => {
+  const secretEnv = { ...CONFIGURED_ENV, OYSCAT_FORWARD_SECRET: "s3cret" }
+  let mailer
+  let server
+
+  beforeEach(async () => {
+    await server?.close()
+    mailer = fakeMailer()
+    server = await startServer({ env: secretEnv, mailer })
+  })
+
+  after(() => server?.close())
+
+  test("refuses requests without the secret or with a wrong one", async () => {
+    for (const headers of [{}, { "x-oyscat-forward-secret": "wrong" }]) {
+      const response = await server.post({ email: "a@example.com" }, headers)
+      assert.equal(response.status, 403)
+      assert.equal((await response.json()).error.code, "FORBIDDEN")
+    }
+    assert.equal(mailer.sent.length, 0)
+  })
+
+  test("rate-limits on the forwarded visitor address", async () => {
+    const from = (ip) => ({ "x-oyscat-forward-secret": "s3cret", "x-oyscat-client-ip": ip })
+    assert.equal((await server.post({ email: "a@example.com" }, from("198.51.100.10"))).status, 200)
+    assert.equal((await server.post({ email: "b@example.com" }, from("198.51.100.11"))).status, 200)
+    assert.equal((await server.post({ email: "c@example.com" }, from("198.51.100.10"))).status, 429)
+    assert.equal(mailer.sent.length, 2)
+  })
+})
+
+describe("loadConfig", () => {
+  test("trusts X-Forwarded-For on Vercel and only loopback elsewhere", () => {
+    assert.equal(loadConfig({ VERCEL: "1" }).trustProxy, true)
+    assert.equal(loadConfig({}).trustProxy, "loopback")
+    assert.equal(loadConfig({ TRUST_PROXY: "false", VERCEL: "1" }).trustProxy, false)
+  })
+})
+
+describe("Vercel default export", () => {
+  test("serves the app built from the environment", async () => {
+    const server = createServer(vercelHandler)
+    await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve))
+    try {
+      const response = await fetch(`http://127.0.0.1:${server.address().port}/health`)
+      assert.deepEqual(await response.json(), { status: "ok" })
+    } finally {
+      await new Promise((resolve) => server.close(resolve))
+    }
   })
 })
 

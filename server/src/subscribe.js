@@ -1,3 +1,4 @@
+import { createHash, timingSafeEqual } from "node:crypto"
 import { z } from "zod"
 import { isMailConfigured } from "./config.js"
 
@@ -12,6 +13,11 @@ const subscribeSchema = z.object({
  */
 export function createSubscribeHandler({ config, mailer, limiter, logger = console }) {
   return async function subscribe(req, res) {
+    const clientIp = resolveClientIp(req, config.forwardSecret)
+    if (clientIp === null) {
+      return sendError(res, 403, "FORBIDDEN", "Forbidden")
+    }
+
     const parsed = subscribeSchema.safeParse(req.body)
     if (!parsed.success) {
       return sendError(res, 400, "SUBSCRIBE_INVALID", "请填写有效的邮箱地址")
@@ -22,7 +28,7 @@ export function createSubscribeHandler({ config, mailer, limiter, logger = conso
     }
 
     // The slot is taken before sending, so a failed send still blocks retries for the window and can't hammer SMTP.
-    const retryAfter = limiter.take(req.ip ?? "unknown")
+    const retryAfter = limiter.take(clientIp)
     if (retryAfter) {
       res.set("retry-after", String(retryAfter))
       return sendError(res, 429, "RATE_LIMIT_EXCEEDED", "提交太频繁，请稍后再试")
@@ -55,6 +61,24 @@ export function createSubscribeHandler({ config, mailer, limiter, logger = conso
 
 export function sendError(res, status, code, message) {
   res.status(status).json({ error: { code, message } })
+}
+
+/**
+ * The rate-limit key for a request, or null when the request must be refused.
+ * When the website and this service are separate Vercel deployments, Vercel rewrites X-Forwarded-For on the hop
+ * between them to the website's own address, so the visitor's address only survives in x-oyscat-client-ip.
+ * The shared secret is what makes that header trustworthy; without a secret configured, req.ip is used.
+ */
+function resolveClientIp(req, secret) {
+  if (!secret) return req.ip ?? "unknown"
+  if (!sameSecret(req.get("x-oyscat-forward-secret") ?? "", secret)) return null
+  return req.get("x-oyscat-client-ip")?.trim() || req.ip || "unknown"
+}
+
+function sameSecret(received, expected) {
+  // Comparing digests keeps the comparison constant-time regardless of the received length.
+  const digest = (value) => createHash("sha256").update(value).digest()
+  return timingSafeEqual(digest(received), digest(expected))
 }
 
 function formatUtc(date) {

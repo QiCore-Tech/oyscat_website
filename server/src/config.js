@@ -1,10 +1,12 @@
-/** Reads the service settings from the environment (loaded from server/.env by `node --env-file-if-exists`). */
+/** Reads the service settings from the environment (server/.env locally, the project's variables on Vercel). */
 export function loadConfig(env = process.env) {
   return {
     port: Number(env.PORT) || 4000,
     host: env.HOST || "127.0.0.1",
-    // Express "trust proxy" value. The default trusts only the co-located Next server, so req.ip is the visitor it forwarded.
-    trustProxy: env.TRUST_PROXY || "loopback",
+    trustProxy: parseTrustProxy(env),
+    // Shared with the website (same variable there). When set, only requests carrying it are served, and the
+    // visitor address they forward is used for rate limiting.
+    forwardSecret: env.OYSCAT_FORWARD_SECRET ?? "",
     smtp: {
       host: env.SMTP_HOST || "smtp.163.com",
       port: Number(env.SMTP_PORT) || 465,
@@ -24,4 +26,16 @@ export function loadConfig(env = process.env) {
 
 export function isMailConfigured(config) {
   return Boolean(config.smtp.user && config.smtp.pass && config.notifyEmail)
+}
+
+/**
+ * Express "trust proxy" value. Locally it trusts only the co-located Next server, so req.ip is the visitor it
+ * forwarded. On Vercel the platform overwrites X-Forwarded-For with the connecting client, so it is trusted as is.
+ */
+function parseTrustProxy(env) {
+  const value = env.TRUST_PROXY?.trim()
+  if (value === "true") return true
+  if (value === "false") return false
+  if (value) return value
+  return env.VERCEL ? true : "loopback"
 }

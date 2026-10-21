@@ -15,6 +15,14 @@ export async function POST(request: Request) {
   if (forwardedFor) {
     headers["x-forwarded-for"] = forwardedFor
   }
+  // When the service is its own Vercel deployment, Vercel rewrites x-forwarded-for on the way there to this
+  // server's address, so the visitor's address travels in a header the service trusts only with the shared secret.
+  const forwardSecret = process.env.OYSCAT_FORWARD_SECRET
+  if (forwardSecret) {
+    headers["x-oyscat-forward-secret"] = forwardSecret
+    const clientIp = forwardedFor?.split(",")[0]?.trim() || request.headers.get("x-real-ip")
+    if (clientIp) headers["x-oyscat-client-ip"] = clientIp
+  }
 
   try {
     const upstream = await fetch(SUBSCRIBE_API_URL, {
