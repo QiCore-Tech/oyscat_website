@@ -1,7 +1,8 @@
 import type { Metadata } from "next"
 import { getTranslations } from "next-intl/server"
 import { getRequestLocale } from "../../../i18n/locale"
-import { SITE_NAME, TWITTER_HANDLE, getSiteUrl } from "@/lib/site"
+import { SITE_NAME, TWITTER_HANDLE } from "@/lib/site"
+import { getSiteUrl } from "@/lib/site-url"
 import { IntroduceStructuredData } from "./structured-data"
 
 const OG_LOCALE = { "zh-CN": "zh_CN", en: "en_US" } as const

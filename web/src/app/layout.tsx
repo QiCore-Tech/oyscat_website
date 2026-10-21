@@ -1,7 +1,8 @@
 import type { Metadata } from "next"
 import { NextIntlClientProvider } from "next-intl"
 import { TooltipProvider } from "@/components/ui/tooltip"
-import { PUBLISHER, SITE_NAME, getSiteUrl } from "@/lib/site"
+import { PUBLISHER, SITE_NAME } from "@/lib/site"
+import { getSiteUrl } from "@/lib/site-url"
 import { getRequestLocale } from "../../i18n/locale"
 import "./globals.css"
 

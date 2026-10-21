@@ -1,4 +1,4 @@
-import { headers } from "next/headers"
+// Site-wide constants. Kept free of server-only imports so client components can use them too.
 
 export const SITE_NAME = "Oyscat"
 
@@ -24,21 +24,5 @@ export const SOCIAL_PROFILES = [
 
 export const TWITTER_HANDLE = "@Oyscat"
 
-/**
- * The site's public origin, used for canonical, Open Graph, sitemap and structured-data URLs.
- * Set OYSCAT_SITE_URL in production; without it the origin comes from the request (the proxy's forwarded host first).
- */
-export async function getSiteUrl(): Promise<URL> {
-  const configured = process.env.OYSCAT_SITE_URL?.trim()
-  if (configured) return new URL(configured)
-
-  const requestHeaders = await headers()
-  const host = firstValue(requestHeaders.get("x-forwarded-host")) ?? requestHeaders.get("host") ?? "localhost:3100"
-  const isLocal = /^(localhost|127\.|\[::1\])/.test(host)
-  const protocol = firstValue(requestHeaders.get("x-forwarded-proto")) ?? (isLocal ? "http" : "https")
-  return new URL(`${protocol}://${host}`)
-}
-
-function firstValue(header: string | null) {
-  return header?.split(",")[0]?.trim() || undefined
-}
+/** The beta sign-up form behind the hero's and the 404 page's call to action. */
+export const WORKSPACE_ACCESS_FORM_URL = "https://bcn87u70v4ke.feishu.cn/share/base/form/shrcnqbRzoBUSCmsBy7YhvdDTin"

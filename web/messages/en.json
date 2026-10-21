@@ -45,5 +45,16 @@
     "languageChinese": "中文",
     "languageEnglish": "English",
     "copyright": "© 2026 Oyscat"
+  },
+  "notFound": {
+    "metaTitle": "Page not found | Oyscat",
+    "metaDescription": "The page you were looking for does not exist. Head back to Oyscat to explore the AI electrified making system.",
+    "eyebrow": "404 · Page not found",
+    "title": "This page hasn’t been built yet.",
+    "description": "The address you followed doesn’t exist. It may have been moved or removed. Head back home and keep focusing on what you want to make.",
+    "backHome": "Back to home",
+    "contactPrompt": "Broken link? Let us know:",
+    "boardLabel": "OYSCAT MODULE BOARD",
+    "boardMissing": "1 MODULE MISSING"
   }
 }

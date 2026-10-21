@@ -5,6 +5,7 @@ import localFont from "next/font/local";
 import { useLocale, useTranslations } from "next-intl";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { WORKSPACE_ACCESS_FORM_URL } from "@/lib/site";
 import { HomeCanvasScene } from "./components/home-canvas-scene";
 import { HomePromptOverlay } from "./components/home-prompt-overlay";
 import styles from "./components/home-voxel-canvas.module.css";
@@ -22,8 +23,6 @@ const heroFont = localFont({
   display: "swap",
   adjustFontFallback: false,
 });
-
-const WORKSPACE_ACCESS_FORM_URL = "https://bcn87u70v4ke.feishu.cn/share/base/form/shrcnqbRzoBUSCmsBy7YhvdDTin";
 
 export function QiCoreHero({ atTop }: { atTop: boolean }) {
   const t = useTranslations("introduce.qicoreHero");

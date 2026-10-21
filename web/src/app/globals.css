@@ -288,3 +288,18 @@ body {
     @apply font-sans;
   }
 }
+
+/* ════════════════════════════════════════════════════════════
+   404 module board (src/components/not-found/module-board.tsx)
+   ════════════════════════════════════════════════════════════ */
+@keyframes not-found-seat-march {
+  to { stroke-dashoffset: -10; }
+}
+
+/* Falls from its empty seat, lands tilted, bounces once and settles. */
+@keyframes not-found-module-drop {
+  0% { transform: translate(var(--module-from-x), var(--module-from-y)) rotate(0deg); animation-timing-function: cubic-bezier(0.55, 0, 1, 0.45); }
+  62% { transform: translate(0, 0) rotate(var(--module-tilt)); animation-timing-function: cubic-bezier(0, 0.55, 0.45, 1); }
+  78% { transform: translate(0, -6px) rotate(calc(var(--module-tilt) * 0.8)); animation-timing-function: cubic-bezier(0.55, 0, 1, 0.45); }
+  100% { transform: translate(0, 0) rotate(var(--module-tilt)); }
+}
