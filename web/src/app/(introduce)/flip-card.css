@@ -1,0 +1,202 @@
+.flip-card {
+  --fc-w: 300px;
+  --fc-h: 400px;
+  --fc-radius: 22px;
+  --fc-bg: #27272a;
+  --fc-ink: #f5f5f5;
+  --fc-shadow: #000000;
+  --fc-shadow-o: 0.45;
+  --fc-glare: 0.22;
+  --fc-glare-color: #ffffff;
+
+  position: relative;
+  display: inline-block;
+  width: var(--fc-w);
+  max-width: 100%;
+  height: var(--fc-h);
+  border-radius: var(--fc-radius);
+  outline: none;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: pan-y;
+}
+
+.flip-card[data-axis='x'] {
+  touch-action: pan-x;
+}
+
+.flip-card[data-draggable] {
+  cursor: grab;
+}
+
+.flip-card[data-dragging] {
+  cursor: grabbing;
+}
+
+.flip-card[data-disabled] {
+  cursor: default;
+  opacity: 0.6;
+}
+
+.flip-card__shadow {
+  position: absolute;
+  inset: 12% 9% -5%;
+  border-radius: var(--fc-radius);
+  background: color-mix(in srgb, var(--fc-shadow) calc(var(--fc-shadow-o) * 100%), transparent);
+  filter: blur(22px);
+  pointer-events: none;
+}
+
+.flip-card__rotor {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+
+.flip-card__face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: var(--fc-radius);
+  background: var(--fc-bg);
+  color: var(--fc-ink);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flip-card__face img {
+  -webkit-user-drag: none;
+}
+
+.flip-card__face--back {
+  transform: rotateY(180deg);
+}
+
+.flip-card[data-axis='x'] .flip-card__face--back {
+  transform: rotateX(180deg);
+}
+
+.flip-card__glare {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle farthest-side at var(--fc-gx, 50%) var(--fc-gy, 50%),
+    color-mix(in srgb, var(--fc-glare-color) calc(var(--fc-glare) * 100%), transparent) 0%,
+    color-mix(in srgb, var(--fc-glare-color) calc(var(--fc-glare) * 76%), transparent) 12%,
+    color-mix(in srgb, var(--fc-glare-color) calc(var(--fc-glare) * 50%), transparent) 26%,
+    color-mix(in srgb, var(--fc-glare-color) calc(var(--fc-glare) * 28%), transparent) 42%,
+    color-mix(in srgb, var(--fc-glare-color) calc(var(--fc-glare) * 12%), transparent) 60%,
+    color-mix(in srgb, var(--fc-glare-color) calc(var(--fc-glare) * 4%), transparent) 78%,
+    transparent 100%
+  );
+  opacity: var(--fc-sheen, 0);
+  pointer-events: none;
+}
+
+/* Click-or-drag-to-flip cue: on a loop, a hand presses and drags while the rotate icon turns over.
+   Sized in em so it follows the font size it is given. */
+.flip-card__hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75em;
+  padding: 0.55em 1em;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 18%);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 40%);
+  color: #fff;
+  pointer-events: none;
+}
+
+.flip-card__hint svg {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.flip-card__hint-icon {
+  animation: flip-card-hint-turn 2.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+.flip-card__hint-gesture {
+  position: relative;
+  width: 3.25em;
+  height: 1.5em;
+}
+
+/* Streak left behind by the fingertip, which sits at (0.5em, 0.125em) of the 1.5em hand icon. */
+.flip-card__hint-trail {
+  position: absolute;
+  top: 0.05em;
+  left: 0.5em;
+  width: 1.75em;
+  height: 0.15em;
+  border-radius: 999px;
+  background: linear-gradient(to right, rgb(255 255 255 / 0%), rgb(255 255 255 / 85%));
+  opacity: 0.7;
+  transform-origin: left center;
+  animation: flip-card-hint-trail 2.8s ease-in-out infinite;
+}
+
+.flip-card__hint-hand {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 33% 8%;
+  animation: flip-card-hint-hand 2.8s ease-in-out infinite;
+}
+
+@keyframes flip-card-hint-hand {
+  0% { opacity: 0; transform: translateX(0) scale(1); }
+  12% { opacity: 1; transform: translateX(0) scale(1); }
+  22% { opacity: 1; transform: translateX(0) scale(0.85); }
+  60% { opacity: 1; transform: translateX(1.75em) scale(0.85); }
+  70% { opacity: 1; transform: translateX(1.75em) scale(1); }
+  86%, 100% { opacity: 0; transform: translateX(1.75em) scale(1); }
+}
+
+@keyframes flip-card-hint-trail {
+  0%, 22% { opacity: 0; transform: scaleX(0); }
+  30% { opacity: 1; }
+  60% { opacity: 1; transform: scaleX(1); }
+  86%, 100% { opacity: 0; transform: scaleX(1); }
+}
+
+@keyframes flip-card-hint-turn {
+  0%, 40% { transform: perspective(4em) rotateY(0deg); }
+  72%, 100% { transform: perspective(4em) rotateY(360deg); }
+}
+
+/* A mouse or pen flips the card just by pointing at it, so it needs no cue, and shows the hand cursor
+   rather than grab since it cannot be dragged; touch screens cannot hover, so they keep tap, swipe and this cue. */
+@media (hover: hover) and (pointer: fine) {
+  .flip-card[data-hover-flip] {
+    cursor: pointer;
+  }
+
+  .flip-card[data-hover-flip] .flip-card__hint {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flip-card__hint-icon,
+  .flip-card__hint-trail,
+  .flip-card__hint-hand {
+    animation: none;
+  }
+}
+
+.flip-card[data-fade] .flip-card__face {
+  transform: none;
+  opacity: 0;
+  backface-visibility: visible;
+  -webkit-backface-visibility: visible;
+  transition: opacity 200ms ease;
+}
+
+.flip-card[data-fade='front'] .flip-card__face--front,
+.flip-card[data-fade='back'] .flip-card__face--back {
+  opacity: 1;
+}

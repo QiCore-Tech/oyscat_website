@@ -1,0 +1,290 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "../styles/shadcn-tailwind.css";
+
+@theme inline {
+  /* ── shadcn semantic tokens ─────────────────────────────── */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* ── neutral palette ────────────────────────────────────── */
+  --color-neutral-0: var(--n-0);
+  --color-neutral-50: var(--n-50);
+  --color-neutral-100: var(--n-100);
+  --color-neutral-200: var(--n-200);
+  --color-neutral-300: var(--n-300);
+  --color-neutral-400: var(--n-400);
+  --color-neutral-700: var(--n-700);
+  --color-neutral-900: var(--n-900);
+
+  /* ── voxel brand palette ────────────────────────────────── */
+  --color-voxel-coral: var(--c-voxel-coral);
+  --color-voxel-coral-light: var(--c-voxel-coral-light);
+  --color-voxel-coral-border: var(--c-voxel-coral-border);
+  --color-voxel-amber: var(--c-voxel-amber);
+  --color-voxel-amber-light: var(--c-voxel-amber-light);
+  --color-voxel-amber-border: var(--c-voxel-amber-border);
+  --color-voxel-olive: var(--c-voxel-olive);
+  --color-voxel-olive-light: var(--c-voxel-olive-light);
+  --color-voxel-olive-border: var(--c-voxel-olive-border);
+  --color-voxel-sage: var(--c-voxel-sage);
+  --color-voxel-sage-light: var(--c-voxel-sage-light);
+  --color-voxel-sage-border: var(--c-voxel-sage-border);
+  --color-voxel-dust: var(--c-voxel-dust);
+  --color-voxel-dust-light: var(--c-voxel-dust-light);
+  --color-voxel-dust-border: var(--c-voxel-dust-border);
+  --color-voxel-lavender: var(--c-voxel-lavender);
+  --color-voxel-lavender-light: var(--c-voxel-lavender-light);
+  --color-voxel-lavender-border: var(--c-voxel-lavender-border);
+
+  /* ── state functional colors ────────────────────────────── */
+  --color-danger: var(--c-danger);
+  --color-danger-light: var(--c-danger-light);
+  --color-danger-border: var(--c-danger-border);
+  --color-warn: var(--c-warn);
+  --color-warn-light: var(--c-warn-light);
+  --color-warn-border: var(--c-warn-border);
+  --color-ok: var(--c-ok);
+  --color-ok-light: var(--c-ok-light);
+  --color-ok-border: var(--c-ok-border);
+  --color-info: var(--c-info);
+  --color-info-light: var(--c-info-light);
+  --color-info-border: var(--c-info-border);
+  
+  --color-brand-blue: #18181B; /* Zinc-900: Deep Zinc / Charcoal */
+  --color-brand-active: #71717A; /* Zinc-500: Steel Grey for active states */
+
+  /* ── font stacks ────────────────────────────────────────── */
+  --font-sans: var(--font-sans);
+  --font-heading: var(--font-heading);
+  --font-mono: var(--font-mono);
+
+  /* ── radii (four-tier: 4/8/12/16) ──────────────────────── */
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius: var(--radius);
+}
+
+/* ════════════════════════════════════════════════════════════
+   Root tokens — soha design system
+   ════════════════════════════════════════════════════════════ */
+:root {
+  /* ── 1. Neutral palette (cool-neutral, zinc family) ── */
+  /* Moved from warm-cream to cool-neutral for a whiter page feel.        */
+  /* Voxel earthy accents sit on top as "warm items in cool shell" (Muji).  */
+  --n-0: #ffffff;           /* Card / input background                    */
+  --n-50: #FAFAFA;          /* Page background — near-white neutral       */
+  --n-100: #F4F4F5;         /* Hover background                           */
+  --n-200: #E4E4E7;         /* Subtle borders / dividers                  */
+  --n-300: #A1A1AA;         /* Placeholder / meta text                    */
+  --n-400: #71717A;         /* Secondary text                             */
+  --n-700: #3F3F46;         /* Deep text                                  */
+  --n-900: #18181B;         /* Near-black — replaces warm #1A1715         */
+
+  /* ── 2. Voxel brand palette (6 colors from soha_website) ── */
+  /* Each has -light (50% mix with white) and -border (15% darker) derivatives. */
+
+  --c-voxel-coral: #C9857C;             /* 暖粉珊瑚 (voxel top face)       */
+  --c-voxel-coral-light: #E5B9AF;       /* 50% mix with #fff               */
+  --c-voxel-coral-border: #A76F68;      /* 15% darker                      */
+
+  --c-voxel-amber: #D2A06E;             /* 暖琥珀 (voxel front face)       */
+  --c-voxel-amber-light: #EAC5A3;       /* 50% mix with #fff               */
+  --c-voxel-amber-border: #B2875D;      /* 15% darker                      */
+
+  --c-voxel-olive: #D8C27A;             /* 黄绿橄榄 (voxel right face)     */
+  --c-voxel-olive-light: #EDE1B5;       /* 50% mix with #fff               */
+  --c-voxel-olive-border: #B7A567;      /* 15% darker                      */
+
+  --c-voxel-sage: #8FA892;              /* 灰绿鼠尾草 (voxel left face)    */
+  --c-voxel-sage-light: #BFCFC1;        /* 50% mix with #fff               */
+  --c-voxel-sage-border: #798F7C;       /* 15% darker                      */
+
+  --c-voxel-dust: #7E98B7;             /* 灰蓝粉尘 (voxel back face)      */
+  --c-voxel-dust-light: #B4C4D5;        /* 50% mix with #fff               */
+  --c-voxel-dust-border: #6B819C;       /* 15% darker                      */
+
+  --c-voxel-lavender: #A08FB5;          /* 灰紫薰衣草 (voxel bottom face)  */
+  --c-voxel-lavender-light: #C6BED2;    /* 50% mix with #fff               */
+  --c-voxel-lavender-border: #87799B;   /* 15% darker                      */
+
+  /* ── 3. State functional colors (HSL 55–65% saturation) ── */
+  /* Concrete hex chosen within the ranges from design-direction § 4.1. */
+
+  --c-danger: #C75450;                  /* HSL(3, 58%, 55%) — coral red    */
+  --c-danger-light: #FDF2F2;            /* HSL(3, 75%, 97%) — soft bg      */
+  --c-danger-border: #D9A3A1;           /* HSL(3, 47%, 74%) — subtle line  */
+
+  --c-warn: #C8871A;                    /* HSL(36, 77%, 45%) — warm amber  */
+  --c-warn-light: #FFFBF0;              /* HSL(45, 100%, 97%) — soft bg    */
+  --c-warn-border: #D9B677;             /* HSL(36, 52%, 66%) — subtle line */
+
+  --c-ok: #389460;                      /* HSL(145, 45%, 40%) — sage green */
+  --c-ok-light: #F0F9F4;               /* HSL(145, 50%, 96%) — soft bg    */
+  --c-ok-border: #8DBFA3;              /* HSL(145, 29%, 65%) — subtle line */
+
+  --c-info: #3B82BF;                    /* HSL(210, 52%, 49%) — slate blue */
+  --c-info-light: #F0F5FF;             /* HSL(216, 100%, 97%) — soft bg   */
+  --c-info-border: #8DAFD9;            /* HSL(210, 43%, 70%) — subtle line */
+
+  /* ── 4. Border levels ──────────────────────────────────── */
+  --border-subtle: rgba(0, 0, 0, 0.04);
+  --border-default: rgba(0, 0, 0, 0.08);
+  --border-strong: rgba(0, 0, 0, 0.15);
+
+  /* ── 5. Radii (four-tier: 4px / 8px / 12px / 16px) ────── */
+  --radius-sm: 0.25rem;    /* 4px — tight controls (checkbox, tag)        */
+  --radius-md: 0.5rem;     /* 8px — BASE tier: buttons, cards, inputs     */
+  --radius-lg: 0.75rem;    /* 12px — modals, large cards, hero            */
+  --radius-xl: 1rem;       /* 16px — feature cards, onboarding heroes     */
+  --radius: var(--radius-md);
+
+  /* ── 6. Shadows (four-tier, retained from baseline) ────── */
+  /* md slightly stronger than baseline 0.04 for Pinterest breathing. */
+  --shadow-sm: 0 0 0 4px rgba(0, 0, 0, 0.03);          /* focus ring       */
+  --shadow-md: 0 12px 28px rgba(0, 0, 0, 0.06);         /* card hover       */
+  --shadow-lg: 0 20px 42px rgba(0, 0, 0, 0.08);         /* gallery hover    */
+  --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.22);   /* modals           */
+
+  /* ── 7. Motion — easing curves + durations ─────────────── */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast: 200ms;
+  --dur-normal: 300ms;
+  --dur-slow: 400ms;
+  --dur-slower: 600ms;
+
+  /* ── 8. Z-index layers ─────────────────────────────────── */
+  --z-base: 0;
+  --z-content: 10;
+  --z-overlay: 20;
+  --z-sticky: 50;
+  --z-nav: 200;
+  --z-modal: 300;
+  --z-toast: 400;
+
+  /* ── 9. Typography font stacks ─────────────────────────── */
+  /* Mono is strictly functional (code, BOM, hash, timestamp) — never decorative. */
+  --font-sans: 'MiSans', 'Outfit', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Outfit', 'MiSans', system-ui, sans-serif;
+  --font-mono: 'Geist Mono', 'SF Mono', Menlo, Consolas, monospace;
+
+  /* ── 9a. Wiki reading scale ─────────────────────────────── */
+  --wiki-measure: min(72ch, 720px);
+  --wiki-body-size: 15px;
+  --wiki-leading: 1.75;
+  --wiki-h1: 30px;
+  --wiki-h2: 20px;
+  --wiki-h3: 15px;
+
+  /* ── 10. shadcn semantic token mapping ─────────────────── */
+  /* Maps shadcn's --primary / --background / etc. onto soha tokens. */
+
+  --background: var(--n-50);
+  --foreground: var(--n-900);
+  --card: var(--n-0);
+  --card-foreground: var(--n-900);
+  --popover: var(--n-0);
+  --popover-foreground: var(--n-900);
+  --primary: var(--n-900);
+  --primary-foreground: var(--n-0);
+  --secondary: var(--n-100);
+  --secondary-foreground: var(--n-900);
+  --muted: var(--n-100);
+  --muted-foreground: var(--n-400);
+  --accent: var(--c-voxel-sage);
+  --accent-foreground: var(--n-900);
+  --destructive: var(--c-danger);
+  --destructive-foreground: var(--n-0);
+  --border: var(--border-default);
+  --input: var(--border-default);
+  --ring: var(--n-900);
+  --chart-1: var(--c-voxel-coral);
+  --chart-2: var(--c-voxel-amber);
+  --chart-3: var(--c-voxel-olive);
+  --chart-4: var(--c-voxel-dust);
+  --chart-5: var(--c-voxel-lavender);
+  --sidebar: var(--n-50);
+  --sidebar-foreground: var(--n-900);
+  --sidebar-primary: var(--n-900);
+  --sidebar-primary-foreground: var(--n-0);
+  --sidebar-accent: var(--n-100);
+  --sidebar-accent-foreground: var(--n-900);
+  --sidebar-border: var(--border-default);
+  --sidebar-ring: var(--n-900);
+}
+
+/* ════════════════════════════════════════════════════════════
+   Outfit — the Google Fonts files the soha_stack app serves, self-hosted
+   because next/font/google cannot download on every build host.
+   Registered as "Outfit" so the 'Outfit' fallback in --font-sans resolves.
+   ════════════════════════════════════════════════════════════ */
+@font-face {
+  font-family: Outfit;
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("./fonts/outfit-latin-ext.woff2") format("woff2");
+  unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: Outfit;
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("./fonts/outfit-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* ════════════════════════════════════════════════════════════
+   Base layer
+   ════════════════════════════════════════════════════════════ */
+body {
+  font-family: var(--font-sans);
+  background: var(--background);
+  color: var(--foreground);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}

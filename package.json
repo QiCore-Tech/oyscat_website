@@ -1,0 +1,13 @@
+{
+  "name": "oyscat",
+  "private": true,
+  "packageManager": "pnpm@10.32.1",
+  "scripts": {
+    "dev": "pnpm --recursive --parallel --stream run dev",
+    "dev:web": "pnpm --filter @oyscat/web run dev",
+    "dev:server": "pnpm --filter @oyscat/server run dev",
+    "build": "pnpm --filter @oyscat/web run build",
+    "start": "pnpm --recursive --parallel --stream run start",
+    "test": "pnpm --recursive run test"
+  }
+}

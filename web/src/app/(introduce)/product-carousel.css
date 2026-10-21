@@ -1,0 +1,29 @@
+.introduce-product-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.introduce-product-scroll::-webkit-scrollbar {
+  display: none;
+  height: 0;
+  width: 0;
+}
+
+/* Let a horizontal swipe move the carousel instead of being consumed by the card's drag-to-flip gesture. */
+.flip-card.introduce-product-card {
+  touch-action: pan-x pan-y;
+}
+
+@media (max-width: 39.999rem) {
+  .introduce-product-card .flip-card__hint {
+    display: none;
+  }
+}
+
+/* Below lg the strip is a scroller, whose clip cuts the blurred drop shadow into a hard-edged band under the
+   cards and grey slits between them (and lets the strip scroll vertically); only lg, where it is not clipped, keeps it. */
+@media (max-width: 63.999rem) {
+  .introduce-product-card .flip-card__shadow {
+    display: none;
+  }
+}

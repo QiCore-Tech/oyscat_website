@@ -1,0 +1,49 @@
+{
+  "introduce": {
+    "metaTitle": "Oyscat | AI Electrified Making System – Where Creation Begins",
+    "metaDescription": "Oyscat by QiCore is an AI electrified making system: generate models from a single sentence or build with standard electronic modules, program in natural language, validate in simulation, then assemble the real thing with 3D-printed or handmade enclosures.",
+    "metaKeywords": "Oyscat, AI making, AI electrified making system, electronic modules, AI modeling, natural language programming, simulation, 3D printing, maker community, QiCore",
+    "ogImageAlt": "Oyscat: Focus on what you want to make, not what you know.",
+    "homeLabel": "Oyscat home",
+    "eyebrow": "Your ideas start here.",
+    "description": "Make creation simpler. Turn hardware, crafts and everyday objects into creations of your own.",
+    "artworkAlt": "Oyscat brand artwork",
+    "libraryAction": "Open My Library",
+    "docsAction": "Read the Docs",
+    "overviewEyebrow": "From idea to creation",
+    "overviewTitle": "Give every idea a place to begin.",
+    "libraryTitle": "Your own creation library",
+    "libraryDescription": "Organize your creations and save snapshots along the way, keeping a record of every experiment.",
+    "workspaceTitle": "A workspace for creating",
+    "workspaceDescription": "Bring parts, structures and code together in one workspace as your ideas take shape.",
+    "docsTitle": "Knowledge within reach",
+    "docsDescription": "From getting started to module references, find what you need for your next creation.",
+    "footer": "Oyscat | Where Creation Begins",
+    "startAction": "Start Creating",
+    "betaBanner": "Oyscat Workspace public beta coming soon",
+    "qicoreHero": {
+      "title": "Focus on what you want to make, not what you know.",
+      "subtitle": "AI electrified making: standard modules, simulation-verified, ready to assemble",
+      "enterWorkspace": "Apply for Beta",
+      "sceneLabel": "3D module canvas",
+      "sceneUnavailable": "3D scene unavailable",
+      "testDrive": "Hold <keys></keys> to test-drive",
+      "prompt": {
+        "text": "Build me an off-road car that drives",
+        "placeholder": "Describe the product you want to build…",
+        "reply": "OK, building an off-road car that drives…",
+        "start": "Start building",
+        "drive": "You can now drive with WASD"
+      }
+    }
+  },
+  "footer": {
+    "brandLine": "Oyscat · Where Creation Begins",
+    "tos": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "languageLabel": "Language",
+    "languageChinese": "中文",
+    "languageEnglish": "English",
+    "copyright": "© 2026 Oyscat"
+  }
+}
