@@ -850,7 +850,7 @@ export function HomeCanvasScene() {
 
   return (
     <>
-      <canvas ref={canvasRef} tabIndex={0} onPointerDown={event => event.currentTarget.focus({ preventScroll: true })} data-home-three-surface aria-label={t("sceneLabel")} className="absolute inset-0 z-10 h-full w-full touch-none cursor-grab active:cursor-grabbing" />
+      <canvas ref={canvasRef} tabIndex={0} onPointerDown={event => event.currentTarget.focus({ preventScroll: true })} data-home-three-surface aria-label={t("sceneLabel")} className="absolute inset-0 z-10 h-full w-full [touch-action:pan-y_pinch-zoom] cursor-grab active:cursor-grabbing" />
       <div ref={hintRef} hidden aria-hidden="true" className="pointer-events-none absolute left-0 top-0 z-30 flex items-center gap-2 whitespace-nowrap rounded-full bg-zinc-900/85 py-1.5! pr-3! pl-2! text-xs text-white shadow-md">
         {t.rich("testDrive", {
           keys: () => (

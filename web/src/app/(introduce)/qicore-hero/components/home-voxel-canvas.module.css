@@ -206,7 +206,9 @@
 
 @media (pointer: coarse) {
   .canvas[data-three-ready="true"] {
-    touch-action: none;
+    /* Keep vertical swipes available for page scrolling; horizontal drags
+       still reach OrbitControls to rotate the vehicle. */
+    touch-action: pan-y pinch-zoom;
   }
 }
 
