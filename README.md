@@ -77,6 +77,7 @@ A Vercel project runs one app, so the website and the subscribe service are two 
 - `structured-data.tsx` emits schema.org JSON-LD: the QiCore and Oyscat organizations, the website, the page, and an FAQPage built from `faq-content.ts`, the same data the FAQ section renders.
 - `robots.txt`, `sitemap.xml` and `manifest.webmanifest` come from `web/src/app/robots.ts`, `sitemap.ts` and `manifest.ts`. Share images are `web/public/og/oyscat-{zh-CN,en}.png` (1200×630 hero screenshots).
 - The language is chosen by the `NEXT_LOCALE` cookie, so both languages share `/` and crawlers (which send no cookie) index the Chinese version. Indexing the English copy separately would need its own URL such as `/en`.
+- The header language switcher is currently hidden (`LANGUAGE_SWITCHER_ENABLED = false` in `web/src/lib/site.ts`), which also makes every visitor get Chinese regardless of the cookie. Set it to `true` to bring English back.
 - Company and social-profile constants are in `web/src/lib/site.ts`; keep `SOCIAL_PROFILES` in sync with the footer links.
 
 ## Production notes

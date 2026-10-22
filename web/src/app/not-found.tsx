@@ -6,7 +6,7 @@ import { ArrowLeft, ArrowUpRight, Mail } from "lucide-react"
 import { getRequestLocale } from "../../i18n/locale"
 import { InterfaceLanguageSwitcher } from "@/components/chrome/interface-language-switcher"
 import { ModuleBoard } from "@/components/not-found/module-board"
-import { PUBLISHER, WORKSPACE_ACCESS_FORM_URL } from "@/lib/site"
+import { LANGUAGE_SWITCHER_ENABLED, PUBLISHER, WORKSPACE_ACCESS_FORM_URL } from "@/lib/site"
 import { introduceFontClass } from "./(introduce)/introduce-theme"
 import oyscatLogo from "./(introduce)/images/oyscat.svg"
 
@@ -36,7 +36,7 @@ export default async function NotFound() {
             <Image src={oyscatLogo} alt="Oyscat" unoptimized className="h-7 w-[100px] object-cover" />
           </Link>
           {/* No refresh callback: the switcher reloads the page, which re-renders this 404 in the new language. */}
-          <InterfaceLanguageSwitcher variant="inline" />
+          {LANGUAGE_SWITCHER_ENABLED && <InterfaceLanguageSwitcher variant="inline" />}
         </div>
       </header>
 

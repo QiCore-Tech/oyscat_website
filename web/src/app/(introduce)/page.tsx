@@ -20,6 +20,7 @@ import { useLocale, useTranslations } from "next-intl"
 import { Box, Cable, Check, ChevronDown, Cpu, Play, Pointer, Rotate3d } from "lucide-react"
 import { Accordion } from "@base-ui/react/accordion"
 import { InterfaceLanguageSwitcher } from "@/components/chrome/interface-language-switcher"
+import { LANGUAGE_SWITCHER_ENABLED } from "@/lib/site"
 
 const CARD_PREVIEWS = [workspacePreview, moduleLibraryPreview, communityPreview]
 const CARD_ACCENTS = [
@@ -290,7 +291,7 @@ export default function IntroducePage() {
             <Image src={oyscatLogo} alt="Oyscat" priority unoptimized className="h-7 w-[100px] object-cover" />
           </Link>
           {/* Refresh in place: a reload would replay the hero's vehicle build. */}
-          <InterfaceLanguageSwitcher variant="inline" onLocaleChange={() => router.refresh()} />
+          {LANGUAGE_SWITCHER_ENABLED && <InterfaceLanguageSwitcher variant="inline" onLocaleChange={() => router.refresh()} />}
         </div>
       </header>
 

@@ -24,5 +24,8 @@ export const SOCIAL_PROFILES = [
 
 export const TWITTER_HANDLE = "@Oyscat"
 
+/** Shows the 中/EN switcher in the headers. While it is off every visitor gets the default locale (zh-CN), whatever NEXT_LOCALE cookie they kept. */
+export const LANGUAGE_SWITCHER_ENABLED = false
+
 /** The beta sign-up form behind the hero's and the 404 page's call to action. */
 export const WORKSPACE_ACCESS_FORM_URL = "https://bcn87u70v4ke.feishu.cn/share/base/form/shrcnqbRzoBUSCmsBy7YhvdDTin"
