@@ -28,21 +28,23 @@ const CARD_ACCENTS = [
   { bar: "bg-cyan-500", icon: "text-cyan-500" },
   { bar: "bg-lime-500", icon: "text-lime-600" },
 ]
-// English copy runs about twice as long as the Chinese, so its card backs use tighter type to fit the fixed card height.
+// Back-face type scales with the card's own width, so narrow screens keep the
+// same wrapping and vertical fit as the 370px desktop design instead of
+// overflowing the fixed-height card.
 const CARD_BACK_TYPE = {
   en: {
-    face: "p-5 sm:p-6",
-    title: "mt-3 text-lg leading-tight sm:mt-4 sm:text-xl",
-    list: "mt-3 gap-1.5 sm:mt-4 sm:gap-2.5",
-    item: "gap-2 text-[length:calc(12*var(--u))] leading-[1.4] sm:text-[length:calc(13*var(--u))] sm:leading-normal",
-    icon: "mt-[calc(1.5*var(--u))] size-3.5 sm:mt-0.75",
+    face: "p-[clamp(14px,6.49cqw,24px)]",
+    title: "mt-[clamp(10px,4.32cqw,16px)] text-[length:clamp(14px,5.4cqw,20px)] leading-tight",
+    list: "mt-[clamp(10px,4.32cqw,16px)] gap-[clamp(6px,2.7cqw,10px)]",
+    item: "gap-[clamp(6px,2.16cqw,8px)] text-[length:clamp(10px,3.51cqw,13px)] leading-[1.4]",
+    icon: "mt-[clamp(2px,1.08cqw,4px)] size-[clamp(12px,3.78cqw,14px)]",
   },
   "zh-CN": {
-    face: "p-7 sm:p-8",
-    title: "mt-5 text-2xl",
-    list: "mt-6 gap-4",
-    item: "gap-3 text-[length:calc(15*var(--u))] leading-relaxed",
-    icon: "mt-1 size-4",
+    face: "p-[clamp(18px,8.65cqw,32px)]",
+    title: "mt-[clamp(14px,5.4cqw,20px)] text-[length:clamp(18px,6.49cqw,24px)] leading-tight",
+    list: "mt-[clamp(16px,6.49cqw,24px)] gap-[clamp(10px,4.32cqw,16px)]",
+    item: "gap-[clamp(8px,3.24cqw,12px)] text-[length:clamp(12px,4.05cqw,15px)] leading-[1.6]",
+    icon: "mt-[clamp(2px,1.08cqw,4px)] size-[clamp(14px,4.32cqw,16px)]",
   },
 }
 
@@ -312,7 +314,7 @@ export default function IntroducePage() {
                   {product.cards.map((card, index) => (
                     <div
                       key={card.title}
-                      className="aspect-[370/480] w-[calc(100%-4rem)] shrink-0 snap-start sm:w-[calc(370*var(--u))] lg:w-auto lg:min-w-0 lg:max-w-[calc(370*var(--u))] lg:flex-1"
+                      className="aspect-[370/500] w-[calc(100%-4rem)] shrink-0 snap-start sm:aspect-[370/480] sm:w-[calc(370*var(--u))] lg:w-auto lg:min-w-0 lg:max-w-[calc(370*var(--u))] lg:flex-1"
                     >
                       <FlipCard
                         ariaLabel={card.title}

@@ -14,6 +14,12 @@
   touch-action: pan-x pan-y;
 }
 
+/* Back-face typography uses cqw units so the card's copy scales with its
+   rendered width instead of keeping desktop-sized text on phone screens. */
+.introduce-product-card .flip-card__face--back {
+  container-type: inline-size;
+}
+
 @media (max-width: 39.999rem) {
   .introduce-product-card .flip-card__hint {
     display: none;
