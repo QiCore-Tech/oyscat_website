@@ -16,6 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: { absolute: t("metaTitle") },
     description: t("metaDescription"),
+    robots: { index: false, follow: true },
   }
 }
 

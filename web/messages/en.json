@@ -1,9 +1,9 @@
 {
   "introduce": {
-    "metaTitle": "Oyscat | AI Electrified Making System – Where Creation Begins",
-    "metaDescription": "Oyscat by QiCore is an AI electrified making system: generate models from a single sentence or build with standard electronic modules, program in natural language, validate in simulation, then assemble the real thing with 3D-printed or handmade enclosures.",
-    "metaKeywords": "Oyscat, AI making, AI electrified making system, electronic modules, AI modeling, natural language programming, simulation, 3D printing, maker community, QiCore",
-    "ogImageAlt": "Oyscat: Focus on what you want to make, not what you know.",
+    "metaTitle": "Oyscat | GenPI’s First Realization · AI Electrified Making System",
+    "metaDescription": "Oyscat by Shenzhen QiCore is the first realization of GenPI, an AI electrified making system. We rebuilt the full making workflow with AI design and simulation, standardized reusable electronic modules and agile assembly, so anyone can bring original ideas to life.",
+    "metaKeywords": "Oyscat, GenPI, AI making, AI electrified making system, AI design and simulation, standardized electronic modules, reusable electronic modules, electrified making, QiCore, Shenzhen QiCore",
+    "ogImageAlt": "Oyscat: the first realization of GenPI, making creation possible for everyone.",
     "homeLabel": "Oyscat home",
     "eyebrow": "Your ideas start here.",
     "description": "Make creation simpler. Turn hardware, crafts and everyday objects into creations of your own.",
@@ -35,6 +35,17 @@
         "start": "Start building",
         "drive": "You can now drive with WASD"
       }
+    },
+    "genpi": {
+      "eyebrow": "GENPI · FIRST REALIZATION",
+      "title": "Rebuilding the making workflow, so creation feels like play",
+      "description": "Oyscat is the first realization of GenPI. We reconnect every step from design and simulation to assembly, so anyone can bring an idea to life and make it their own.",
+      "pillar1Title": "AI-driven design and simulation",
+      "pillar1Description": "Generate models and control logic from natural language, then validate them in simulation before picking up a single part.",
+      "pillar2Title": "Standardized, decentralized and reusable electronic modules",
+      "pillar2Description": "Plug-and-play modules combine freely, programs can be rewritten, and every module can move straight into your next creation.",
+      "pillar3Title": "Extremely agile electrified making for every creator",
+      "pillar3Description": "An idea-to-object workflow connects 3D printing and handmade enclosures, keeping trial and error on screen and creation in your hands."
     }
   },
   "footer": {

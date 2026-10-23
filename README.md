@@ -74,8 +74,9 @@ A Vercel project runs one app, so the website and the subscribe service are two 
 ## SEO
 
 - Metadata lives in `web/src/app/(introduce)/layout.tsx` (title, description, keywords, canonical, Open Graph, Twitter card, robots) and reads its copy from `introduce.meta*` / `ogImageAlt` in `web/messages/*.json`. Site-wide defaults (`metadataBase`, publisher 深圳气核科技有限公司) are in `web/src/app/layout.tsx`.
-- `structured-data.tsx` emits schema.org JSON-LD: the QiCore and Oyscat organizations, the website, the page, and an FAQPage built from `faq-content.ts`, the same data the FAQ section renders.
+- `structured-data.tsx` emits schema.org JSON-LD: the QiCore organization, the Oyscat brand, GenPI, the Oyscat software application, the website, the page, and an FAQPage built from `faq-content.ts`, the same data the FAQ section renders.
 - `robots.txt`, `sitemap.xml` and `manifest.webmanifest` come from `web/src/app/robots.ts`, `sitemap.ts` and `manifest.ts`. Share images are `web/public/og/oyscat-{zh-CN,en}.png` (1200×630 hero screenshots).
+- Set `GOOGLE_SITE_VERIFICATION` and/or `BAIDU_SITE_VERIFICATION` in the website project after registering the production domain, then submit `https://<your-domain>/sitemap.xml` in the corresponding webmaster console.
 - The language is chosen by the `NEXT_LOCALE` cookie, so both languages share `/` and crawlers (which send no cookie) index the Chinese version. Indexing the English copy separately would need its own URL such as `/en`.
 - The header language switcher is currently hidden (`LANGUAGE_SWITCHER_ENABLED = false` in `web/src/lib/site.ts`), which also makes every visitor get Chinese regardless of the cookie. Set it to `true` to bring English back.
 - Company and social-profile constants are in `web/src/lib/site.ts`; keep `SOCIAL_PROFILES` in sync with the footer links.

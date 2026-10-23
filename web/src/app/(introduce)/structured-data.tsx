@@ -9,15 +9,31 @@ interface IntroduceStructuredDataProps {
   title: string
   description: string
   imageUrl: string
+  keywords: string[]
+  slogan: string
+  features: string[]
+  genpiDescription: string
 }
 
-/** schema.org JSON-LD for the landing page: the company, the Oyscat brand, the site, this page and its FAQ. */
-export function IntroduceStructuredData({ locale, siteUrl, title, description, imageUrl }: IntroduceStructuredDataProps) {
+/** schema.org JSON-LD for the landing page: the company, Oyscat, GenPI, the site, the app and its FAQ. */
+export function IntroduceStructuredData({
+  locale,
+  siteUrl,
+  title,
+  description,
+  imageUrl,
+  keywords,
+  slogan,
+  features,
+  genpiDescription,
+}: IntroduceStructuredDataProps) {
   const home = new URL("/", siteUrl).href
   const en = locale === "en"
   const ids = {
     publisher: `${PUBLISHER.url}/#organization`,
-    brand: `${home}#organization`,
+    brand: `${home}#brand`,
+    genpi: `${home}#genpi`,
+    software: `${home}#software`,
     website: `${home}#website`,
     webpage: `${home}#webpage`,
   }
@@ -33,21 +49,50 @@ export function IntroduceStructuredData({ locale, siteUrl, title, description, i
         alternateName: PUBLISHER.alternateName,
         url: PUBLISHER.url,
         email: PUBLISHER.email,
+        description: en
+          ? "Shenzhen QiCore Technology develops Oyscat, an AI electrified making system."
+          : "深圳气核科技有限公司研发 Oyscat AI 电气化造物系统。",
         address: {
           "@type": "PostalAddress",
           addressLocality: en ? "Shenzhen" : "深圳市",
           addressRegion: en ? "Guangdong" : "广东省",
           addressCountry: "CN",
         },
+        brand: { "@id": ids.brand },
       },
       {
-        "@type": "Organization",
+        "@type": "Brand",
         "@id": ids.brand,
         name: SITE_NAME,
         url: home,
         logo: new URL(oyscatLogo.src, siteUrl).href,
+        slogan,
         sameAs: SOCIAL_PROFILES,
-        parentOrganization: { "@id": ids.publisher },
+      },
+      {
+        "@type": "CreativeWorkSeries",
+        "@id": ids.genpi,
+        name: "GenPI",
+        description: genpiDescription,
+        creator: { "@id": ids.publisher },
+        inLanguage: locale,
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": ids.software,
+        name: SITE_NAME,
+        url: home,
+        description,
+        applicationCategory: "DesignApplication",
+        applicationSubCategory: en ? "AI electrified making system" : "AI 电气化造物系统",
+        operatingSystem: en ? "Web browser" : "Web 浏览器",
+        inLanguage: locale,
+        image: imageUrl,
+        publisher: { "@id": ids.publisher },
+        brand: { "@id": ids.brand },
+        isPartOf: { "@id": ids.genpi },
+        featureList: features,
+        keywords: keywords.join(", "),
       },
       {
         "@type": "WebSite",
@@ -56,6 +101,7 @@ export function IntroduceStructuredData({ locale, siteUrl, title, description, i
         url: home,
         inLanguage: ["zh-CN", "en"],
         publisher: { "@id": ids.publisher },
+        about: { "@id": ids.brand },
       },
       {
         "@type": "WebPage",
@@ -65,7 +111,9 @@ export function IntroduceStructuredData({ locale, siteUrl, title, description, i
         description,
         inLanguage: locale,
         isPartOf: { "@id": ids.website },
-        about: { "@id": ids.brand },
+        about: [{ "@id": ids.brand }, { "@id": ids.genpi }, { "@id": ids.software }],
+        mainEntity: { "@id": ids.software },
+        keywords: keywords.join(", "),
         primaryImageOfPage: { "@type": "ImageObject", url: imageUrl, width: 1200, height: 630 },
       },
       {

@@ -16,6 +16,9 @@ async function getPageSeo() {
     title: t("metaTitle"),
     description: t("metaDescription"),
     keywords: t("metaKeywords").split(/\s*,\s*/),
+    slogan: t("qicoreHero.title"),
+    features: [t("genpi.pillar1Title"), t("genpi.pillar2Title"), t("genpi.pillar3Title")],
+    genpiDescription: t("genpi.description"),
     image: { url: `/og/oyscat-${locale}.png`, width: 1200, height: 630, alt: t("ogImageAlt") },
   }
 }
@@ -35,7 +38,7 @@ export async function generateMetadata(): Promise<Metadata> {
       description,
       locale: OG_LOCALE[locale],
       alternateLocale: Object.values(OG_LOCALE).filter((value) => value !== OG_LOCALE[locale]),
-      images: [image],
+      images: [{ ...image, type: "image/png" }],
     },
     twitter: {
       card: "summary_large_image",
@@ -54,7 +57,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function IntroduceLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  const [{ locale, title, description, image }, siteUrl] = await Promise.all([getPageSeo(), getSiteUrl()])
+  const [{ locale, title, description, keywords, slogan, features, genpiDescription, image }, siteUrl] = await Promise.all([getPageSeo(), getSiteUrl()])
   return (
     <>
       {children}
@@ -64,6 +67,10 @@ export default async function IntroduceLayout({ children }: Readonly<{ children:
         title={title}
         description={description}
         imageUrl={new URL(image.url, siteUrl).href}
+        keywords={keywords}
+        slogan={slogan}
+        features={features}
+        genpiDescription={genpiDescription}
       />
     </>
   )

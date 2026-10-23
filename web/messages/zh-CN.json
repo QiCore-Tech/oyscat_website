@@ -1,9 +1,9 @@
 {
   "introduce": {
-    "metaTitle": "Oyscat 官网 | AI 电气化造物系统，让创造变得简单",
-    "metaDescription": "Oyscat 是深圳气核科技有限公司（QiCore）推出的 AI 电气化造物系统：一句话 AI 建模或手动拼搭标准电子模块，用自然语言编程，在虚拟环境中仿真验证，再通过 3D 打印或手工外壳装配成实物。",
-    "metaKeywords": "Oyscat, Oyscat 官网, AI 造物, AI 电气化造物系统, 电子模块, AI 建模, 自然语言编程, 仿真验证, 3D 打印, 造物社区, 气核科技, QiCore",
-    "ogImageAlt": "Oyscat：专注你想造什么，而不是你会什么",
+    "metaTitle": "Oyscat 官网 | GenPI 首个落地实现 · AI 电气化造物系统",
+    "metaDescription": "Oyscat 是深圳气核科技（QiCore）推出的 AI 电气化造物系统，也是 GenPI 体系的首个落地实现。我们重构造物全链路，以 AI 设计与仿真、标准化可复用电子模块和敏捷装配，让任何人都能亲手实现创意、打造专属作品。",
+    "metaKeywords": "Oyscat, Oyscat 官网, GenPI, AI 造物, AI 电气化造物系统, AI 驱动的设计与仿真, 标准化电子模块, 可复用电子模块, 电气化造物, 深圳气核科技, 气核科技, QiCore",
+    "ogImageAlt": "Oyscat：GenPI 首个落地实现，让任何人都能亲手实现创意",
     "homeLabel": "Oyscat 首页",
     "eyebrow": "想法，从这里开始。",
     "description": "让创造变得简单。让硬件、手作与改造，成为你自己的造物。",
@@ -35,6 +35,17 @@
         "start": "开始建造",
         "drive": "现在可以用 WASD 驾驶了"
       }
+    },
+    "genpi": {
+      "eyebrow": "GENPI · 首个落地实现",
+      "title": "重构造物全链路，让创作像游戏一样充满乐趣",
+      "description": "Oyscat 是 GenPI 体系下的首个落地实现。从设计、仿真到装配，我们重新连接造物的每一个环节，让任何人都能亲手实现创意，打造专属作品。",
+      "pillar1Title": "AI 驱动的设计与仿真系统",
+      "pillar1Description": "用自然语言生成模型、编写控制逻辑，并在虚拟环境中仿真验证，让想法在动手前就能被看见。",
+      "pillar2Title": "标准化、去中心化且可重复利用的电子模块",
+      "pillar2Description": "即插即用的模块自由组合，程序可反复擦写，拆下的模块还能继续拼进下一个造物。",
+      "pillar3Title": "赋能用户实现极致敏捷的电气化造物",
+      "pillar3Description": "从创意到实物全程打通，结合 3D 打印与手工材料快速落地，把试错留在屏幕里，把创造带到手中。"
     }
   },
   "footer": {
