@@ -6,7 +6,6 @@ import { useLocale } from "next-intl"
 import { ArrowRight, ArrowUpRight, Mail } from "lucide-react"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { sectionScaleClass } from "./introduce-theme"
-import oyscatLogo from "./images/oyscat.svg"
 
 function FooterSocialIcon({ platform }: { platform: string }) {
   // Brand paths from Simple Icons (CC0): github.com/simple-icons/simple-icons.
@@ -83,7 +82,7 @@ export function IntroduceFooter() {
             <div className="flex flex-col items-start gap-4 max-md:order-1 md:col-start-1 md:row-start-1 md:gap-5 lg:row-span-2 lg:grid lg:grid-rows-subgrid lg:gap-4">
               {/* Parent-company endorsement beside the product logo ("from Meta" style). */}
               <div data-reveal className="flex h-8 min-w-0 items-center gap-2.5 sm:gap-4">
-                <Image src={oyscatLogo} alt="Oyscat" width={1920} height={1080} unoptimized className="h-5 w-[70px] shrink-0 object-cover sm:h-6 sm:w-[84px]" />
+                <Image src="/media/fontlogo.png" alt="Oyscat" width={1200} height={324} unoptimized className="h-[18px] w-auto shrink-0 object-contain sm:h-[21px]" />
                 <span aria-hidden="true" className="h-4 w-px shrink-0 bg-zinc-300 sm:h-5" />
                 <Tooltip>
                   <TooltipTrigger

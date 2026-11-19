@@ -25,6 +25,11 @@ export async function generateMetadata(): Promise<Metadata> {
     creator: PUBLISHER.legalName,
     publisher: PUBLISHER.legalName,
     category: "technology",
+    icons: {
+      icon: [{ url: "/media/logo.png", type: "image/png", sizes: "455x512" }],
+      shortcut: "/media/logo.png",
+      apple: [{ url: "/media/logo.png", sizes: "455x512" }],
+    },
     formatDetection: { telephone: false, address: false, email: false },
     referrer: "origin-when-cross-origin",
     verification: {

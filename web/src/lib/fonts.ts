@@ -3,10 +3,10 @@ import localFont from "next/font/local"
 // English body copy.
 export const objectivity = localFont({
   src: [
-    { path: "../../font/Objectivity/objectivity-light-6.otf", weight: "300", style: "normal" },
-    { path: "../../font/Objectivity/objectivity-medium-8.otf", weight: "500", style: "normal" },
-    { path: "../../font/Objectivity/objectivity-bold-4.otf", weight: "700", style: "normal" },
-    { path: "../../font/Objectivity/objectivity-black-3.otf", weight: "900", style: "normal" },
+    { path: "../../public/font/Objectivity/objectivity-light-6.otf", weight: "300", style: "normal" },
+    { path: "../../public/font/Objectivity/objectivity-medium-8.otf", weight: "500", style: "normal" },
+    { path: "../../public/font/Objectivity/objectivity-bold-4.otf", weight: "700", style: "normal" },
+    { path: "../../public/font/Objectivity/objectivity-black-3.otf", weight: "900", style: "normal" },
   ],
   variable: "--font-objectivity",
   display: "swap",
@@ -16,9 +16,9 @@ export const objectivity = localFont({
 // Chinese copy for every role.
 export const harmonySans = localFont({
   src: [
-    { path: "../../font/HarmonyOS Sans/HarmonyOS_Sans_SC/HarmonyOS_Sans_SC_Regular.ttf", weight: "400", style: "normal" },
-    { path: "../../font/HarmonyOS Sans/HarmonyOS_Sans_SC/HarmonyOS_Sans_SC_Medium.ttf", weight: "500", style: "normal" },
-    { path: "../../font/HarmonyOS Sans/HarmonyOS_Sans_SC/HarmonyOS_Sans_SC_Bold.ttf", weight: "700", style: "normal" },
+    { path: "../../public/font/HarmonyOS Sans/HarmonyOS_Sans_SC/HarmonyOS_Sans_SC_Regular.ttf", weight: "400", style: "normal" },
+    { path: "../../public/font/HarmonyOS Sans/HarmonyOS_Sans_SC/HarmonyOS_Sans_SC_Medium.ttf", weight: "500", style: "normal" },
+    { path: "../../public/font/HarmonyOS Sans/HarmonyOS_Sans_SC/HarmonyOS_Sans_SC_Bold.ttf", weight: "700", style: "normal" },
   ],
   variable: "--font-harmony",
   display: "swap",
@@ -27,7 +27,7 @@ export const harmonySans = localFont({
 
 // English headings: titles, subtitles, section and block titles, navigation.
 export const outfit = localFont({
-  src: [{ path: "../../font/outfit/Outfit-VariableFont_wght.woff2", weight: "100 900", style: "normal" }],
+  src: [{ path: "../../public/font/outfit/Outfit-VariableFont_wght.woff2", weight: "100 900", style: "normal" }],
   variable: "--font-outfit",
   display: "swap",
   adjustFontFallback: false,
@@ -35,7 +35,7 @@ export const outfit = localFont({
 
 // Labels and annotation text.
 export const geistMono = localFont({
-  src: [{ path: "../../font/geist_mono/GeistMono-VariableFont_wght.woff2", weight: "100 900", style: "normal" }],
+  src: [{ path: "../../public/font/geist_mono/GeistMono-VariableFont_wght.woff2", weight: "100 900", style: "normal" }],
   variable: "--font-geist-mono",
   display: "swap",
   adjustFontFallback: false,

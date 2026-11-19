@@ -10,7 +10,6 @@ import { introduceFontClass, sectionScaleClass } from "./introduce-theme"
 import workspacePreview from "./images/5.png"
 import moduleLibraryPreview from "./images/6.png"
 import communityPreview from "./images/9.png"
-import oyscatLogo from "./images/oyscat.svg"
 
 import { useCallback, useEffect, useRef, useSyncExternalStore } from "react"
 import Image from "next/image"
@@ -288,7 +287,7 @@ export default function IntroducePage() {
       >
         <div data-reveal data-reveal-distance="0" className="mx-auto flex min-h-14 max-w-[1440px] items-center justify-between gap-5 px-5 py-2 sm:px-7 [&_a]:inline-flex [&_a]:items-center [&_a]:justify-center [&_a]:gap-2 [&_a:hover]:text-ok">
           <Link href="/" aria-label={t("homeLabel")}>
-            <Image src={oyscatLogo} alt="Oyscat" priority unoptimized className="h-7 w-[100px] object-cover" />
+            <Image src="/media/fontlogo.png" alt="Oyscat" width={1200} height={324} priority unoptimized className="h-6 w-auto object-contain" />
           </Link>
           {/* Refresh in place: a reload would replay the hero's vehicle build. */}
           {LANGUAGE_SWITCHER_ENABLED && <InterfaceLanguageSwitcher variant="inline" onLocaleChange={() => router.refresh()} />}

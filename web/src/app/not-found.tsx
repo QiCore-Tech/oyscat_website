@@ -8,7 +8,6 @@ import { InterfaceLanguageSwitcher } from "@/components/chrome/interface-languag
 import { ModuleBoard } from "@/components/not-found/module-board"
 import { LANGUAGE_SWITCHER_ENABLED, PUBLISHER, WORKSPACE_ACCESS_FORM_URL } from "@/lib/site"
 import { introduceFontClass } from "./(introduce)/introduce-theme"
-import oyscatLogo from "./(introduce)/images/oyscat.svg"
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations({ locale: await getRequestLocale(), namespace: "notFound" })
@@ -34,7 +33,7 @@ export default async function NotFound() {
       <header>
         <div className="mx-auto flex min-h-14 max-w-[1440px] items-center justify-between gap-5 px-5 py-2 sm:px-7 [&_a]:inline-flex [&_a]:items-center [&_a]:justify-center [&_a]:gap-2 [&_a:hover]:text-ok [&_a:focus-visible]:outline-2 [&_a:focus-visible]:outline-ok [&_a:focus-visible]:outline-offset-5">
           <Link href="/" aria-label={tIntro("homeLabel")}>
-            <Image src={oyscatLogo} alt="Oyscat" unoptimized className="h-7 w-[100px] object-cover" />
+            <Image src="/media/fontlogo.png" alt="Oyscat" width={1200} height={324} unoptimized className="h-6 w-auto object-contain" />
           </Link>
           {/* No refresh callback: the switcher reloads the page, which re-renders this 404 in the new language. */}
           {LANGUAGE_SWITCHER_ENABLED && <InterfaceLanguageSwitcher variant="inline" />}
