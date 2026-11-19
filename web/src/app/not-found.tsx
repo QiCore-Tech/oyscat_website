@@ -47,7 +47,7 @@ export default async function NotFound() {
           className="mx-auto grid w-full max-w-[1200px] items-center gap-12 px-5 py-12 sm:px-7 md:py-20 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-16"
         >
           <div className="max-w-xl">
-            <p className="text-xs font-medium tracking-[0.16em] text-zinc-400">{t("eyebrow")}</p>
+            <p className="font-mono text-xs font-medium tracking-[0.16em] text-zinc-400">{t("eyebrow")}</p>
             <h1 id="not-found-title" className="mt-4 text-3xl leading-tight font-bold tracking-tight text-balance text-zinc-900 sm:text-4xl lg:text-[44px]">
               {t("title")}
             </h1>
@@ -72,11 +72,11 @@ export default async function NotFound() {
               </a>
             </div>
 
-            <p className="mt-12 flex flex-wrap items-center gap-x-2 gap-y-1 border-t border-zinc-200 pt-6 text-sm text-zinc-500">
+            <p className="mt-12 flex flex-wrap items-center gap-x-2 gap-y-1 border-t border-zinc-200 pt-6 font-mono text-sm text-zinc-500">
               {t("contactPrompt")}
               <a
                 href={`mailto:${PUBLISHER.email}`}
-                className="inline-flex items-center gap-1.5 rounded-sm text-zinc-700 transition-colors hover:text-zinc-900 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-zinc-500"
+                className="inline-flex items-center gap-1.5 rounded-sm font-mono text-zinc-700 transition-colors hover:text-zinc-900 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-zinc-500"
               >
                 <Mail aria-hidden="true" className="size-4" />
                 {PUBLISHER.email}

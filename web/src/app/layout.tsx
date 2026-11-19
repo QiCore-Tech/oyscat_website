@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next"
 import { NextIntlClientProvider } from "next-intl"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { PUBLISHER, SITE_NAME } from "@/lib/site"
+import { fontVariables } from "@/lib/fonts"
 import { getSiteUrl } from "@/lib/site-url"
 import { getRequestLocale } from "../../i18n/locale"
 import "./globals.css"
@@ -46,7 +47,7 @@ export default async function RootLayout({
   const messages = (await import(`../../messages/${locale}.json`)).default
 
   return (
-    <html lang={locale} className="h-full antialiased">
+    <html lang={locale} className={`h-full antialiased ${fontVariables}`}>
       <body className="min-h-full flex flex-col font-sans" suppressHydrationWarning>
         <NextIntlClientProvider messages={messages} locale={locale}>
           <TooltipProvider delay={200}>{children}</TooltipProvider>

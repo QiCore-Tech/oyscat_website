@@ -29,6 +29,7 @@ export type ModuleRenderOptions = {
 const COLORS: Record<string, string> = {
   top: "#C9857C", front: "#D2A06E", right: "#D8C27A", left: "#8FA892",
   back: "#7E98B7", bottom: "#A08FB5", white: "#F3F1EC", black: "#3A3D40",
+  body: "#FFFDFC", roof: "#FFFDFC", seat: "#191919", rearSeat: "#6993E7",
 };
 
 export function createModuleMesh(voxel: CanvasVoxel, preview = false, options: ModuleRenderOptions = {}) {

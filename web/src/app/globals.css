@@ -195,10 +195,10 @@
   --z-toast: 400;
 
   /* ── 9. Typography font stacks ─────────────────────────── */
-  /* Mono is strictly functional (code, BOM, hash, timestamp) — never decorative. */
-  --font-sans: 'MiSans', 'Outfit', system-ui, -apple-system, sans-serif;
-  --font-heading: 'Outfit', 'MiSans', system-ui, sans-serif;
-  --font-mono: 'Geist Mono', 'SF Mono', Menlo, Consolas, monospace;
+  /* Latin first, Chinese next: the browser falls through per glyph. */
+  --font-sans: var(--font-objectivity), var(--font-harmony), system-ui, -apple-system, sans-serif;
+  --font-heading: var(--font-outfit), var(--font-harmony), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), var(--font-harmony), 'SF Mono', Menlo, Consolas, monospace;
 
   /* ── 9a. Wiki reading scale ─────────────────────────────── */
   --wiki-measure: min(72ch, 720px);
@@ -246,35 +246,22 @@
 }
 
 /* ════════════════════════════════════════════════════════════
-   Outfit — the Google Fonts files the soha_stack app serves, self-hosted
-   because next/font/google cannot download on every build host.
-   Registered as "Outfit" so the 'Outfit' fallback in --font-sans resolves.
-   ════════════════════════════════════════════════════════════ */
-@font-face {
-  font-family: Outfit;
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url("./fonts/outfit-latin-ext.woff2") format("woff2");
-  unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-
-@font-face {
-  font-family: Outfit;
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url("./fonts/outfit-latin.woff2") format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-/* ════════════════════════════════════════════════════════════
    Base layer
    ════════════════════════════════════════════════════════════ */
 body {
   font-family: var(--font-sans);
   background: var(--background);
   color: var(--foreground);
+}
+
+/* Every heading uses Outfit for Latin and HarmonyOS Sans SC for Chinese. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
 }
 
 @layer base {

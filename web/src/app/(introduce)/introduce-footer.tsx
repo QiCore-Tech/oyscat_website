@@ -5,7 +5,7 @@ import Image from "next/image"
 import { useLocale } from "next-intl"
 import { ArrowRight, ArrowUpRight, Mail } from "lucide-react"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import { introduceFontClass, sectionScaleClass } from "./introduce-theme"
+import { sectionScaleClass } from "./introduce-theme"
 import oyscatLogo from "./images/oyscat.svg"
 
 function FooterSocialIcon({ platform }: { platform: string }) {
@@ -63,13 +63,10 @@ export function IntroduceFooter() {
   }
 
   const socialPlatforms = [
-    { label: en ? "WeChat" : "公众号", platform: "WeChat", href: "https://mp.weixin.qq.com/s/wSbBTSHUgdm0Ayuk601eRw" },
-    { label: en ? "Bilibili" : "B站", platform: "Bilibili", href: "https://space.bilibili.com/3745036743215474" },
-    { label: en ? "Xiaohongshu" : "小红书", platform: "Xiaohongshu", href: "https://xhslink.cn/m/85xQ3j0HIh4" },
     { label: "Facebook", platform: "Facebook", href: "https://www.facebook.com/share/1baynW2wi6/" },
     { label: "Instagram", platform: "Instagram", href: "https://www.instagram.com/oyscat_official?srtk=MTJjcmYwOWozbDZqeQ==" },
-    { label: "Twitter / X", platform: "Twitter / X", href: "https://x.com/Oyscat" },
     { label: "YouTube", platform: "YouTube", href: "https://www.youtube.com/@OyscatOfficial/videos" },
+    { label: "Twitter / X", platform: "Twitter / X", href: "https://x.com/Oyscat" },
   ]
 
   return (
@@ -81,7 +78,7 @@ export function IntroduceFooter() {
               (brand, subscribe, contact), content-sized, with two equal 1fr tracks between them that each hold a centred 1px divider.
               From lg the columns share three subgrid rows so they line up and end together: titles (h-8), controls (icons / Join us / input,
               centred), small print (copyright / email / disclaimer). The copyright fills the brand column's third row there, and is the bottom bar below lg.
-              Explicit minmax(0,1fr) tracks: MiSans widens the email input's intrinsic size, which would stretch an auto track past a phone screen. */}
+              Explicit minmax(0,1fr) tracks: HarmonyOS Sans SC widens the email input's intrinsic size, which would stretch an auto track past a phone screen. */}
           <div className="grid grid-cols-1 gap-y-8 md:grid-cols-2 md:gap-x-12 md:gap-y-9 lg:grid-cols-[auto_minmax(calc(64*var(--u)),1fr)_calc(400*var(--u))_minmax(calc(64*var(--u)),1fr)_auto] lg:grid-rows-[auto_auto_auto] lg:gap-x-0 lg:gap-y-4">
             <div className="flex flex-col items-start gap-4 max-md:order-1 md:col-start-1 md:row-start-1 md:gap-5 lg:row-span-2 lg:grid lg:grid-rows-subgrid lg:gap-4">
               {/* Parent-company endorsement beside the product logo ("from Meta" style). */}
@@ -99,22 +96,22 @@ export function IntroduceFooter() {
                       />
                     }
                     data-slot="qicore-link"
-                    className="group inline-flex h-7 shrink-0 cursor-pointer items-center gap-1 rounded-full border border-zinc-300 bg-white pr-2 pl-2.5 text-xs whitespace-nowrap sm:h-8 sm:gap-1.5 sm:pr-2.5 sm:pl-3 text-zinc-500 transition-[border-color,color,box-shadow] hover:border-zinc-900 hover:text-zinc-900 hover:shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-500"
+                    className="group inline-flex h-7 shrink-0 cursor-pointer items-center gap-1 rounded-full border border-zinc-300 bg-white pr-2 pl-2.5 font-mono text-xs whitespace-nowrap sm:h-8 sm:gap-1.5 sm:pr-2.5 sm:pl-3 text-zinc-500 transition-[border-color,color,box-shadow] hover:border-zinc-900 hover:text-zinc-900 hover:shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-500"
                   >
                     {en ? "from" : "来自"}
                     <Image src="/brand/qicore-wordmark.svg" alt="" width={3439} height={807} unoptimized className="h-3 w-auto sm:h-3.5" />
                     <ArrowUpRight aria-hidden="true" className="size-3 transition-transform sm:size-3.5 group-hover:translate-x-px group-hover:-translate-y-px motion-reduce:transition-none" />
                   </TooltipTrigger>
-                  <TooltipContent side="top" sideOffset={8} className={introduceFontClass}>
+                  <TooltipContent side="top" sideOffset={8} className="font-mono">
                     {en ? "Visit the QiCore website" : "访问 QiCore 官网"}
                   </TooltipContent>
                 </Tooltip>
               </div>
-              {/* Pulled left by the icon's inset so the glyphs line up with the logo; no gap under 360px so all seven fit on one row at 320.
+              {/* Pulled left by the icon's inset so the glyphs line up with the logo. Four icons fit on one row at 320.
                   From lg the right inset is cancelled too, so the column (and its gap) is measured from the last glyph, not its hover box.
                   Below md the row spans the full width (first and last glyph flush with the input's edges), and the vertical inset is cancelled
                   so the space around the glyphs matches the other groups' title-to-content and section gaps. */}
-              <ul aria-label={en ? "Social media" : "社交媒体"} className="hidden">
+              <ul aria-label={en ? "Social media" : "社交媒体"} className="-ml-2.5 flex flex-wrap items-center">
                 {socialPlatforms.map(({ label, platform, href }, index) => (
                   <li data-reveal data-reveal-delay={40 + index * 25} key={label}>
                     <Tooltip>
@@ -130,7 +127,7 @@ export function IntroduceFooter() {
                       >
                         <FooterSocialIcon platform={platform} />
                       </TooltipTrigger>
-                      <TooltipContent side="top" sideOffset={8} className={introduceFontClass}>
+                      <TooltipContent side="top" sideOffset={8} className="font-mono">
                         {href ? label : `${label} · ${en ? "Coming soon" : "待开放"}`}
                       </TooltipContent>
                     </Tooltip>
@@ -139,19 +136,19 @@ export function IntroduceFooter() {
               </ul>
             </div>
             <div data-reveal data-reveal-delay="120" className="max-md:order-3 md:col-start-1 md:row-start-2 lg:col-start-5 lg:row-span-3 lg:row-start-1 lg:grid lg:grid-rows-subgrid">
-              <h2 className="flex h-8 items-center text-sm font-semibold text-zinc-900">{en ? "Contact" : "联系我们"}</h2>
+              <h2 className="flex h-8 items-center text-sm font-semibold text-zinc-900">{en ? "Contact us" : "联系我们"}</h2>
               {/* Below md, Join us sits flush right, on the same edge as the last social glyph and the subscribe input. */}
               <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-4 max-md:justify-between md:mt-5 lg:contents">
-                <a href="mailto:info@qicore.ai" className="inline-flex items-center gap-2 lg:row-start-3 lg:self-start lg:justify-self-start rounded-sm text-sm text-zinc-600 transition-colors hover:text-zinc-900 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-zinc-500">
+                <a href="mailto:info@qicore.ai" className="inline-flex items-center gap-2 font-mono lg:row-start-3 lg:self-start lg:justify-self-start rounded-sm text-sm text-zinc-600 transition-colors hover:text-zinc-900 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-zinc-500">
                   <Mail aria-hidden="true" className="size-4" />info@qicore.ai
                 </a>
-                <a href="https://qicore.ai/careers" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-9 items-center lg:row-start-2 lg:self-center lg:justify-self-start justify-center gap-1.5 rounded-md bg-zinc-900 px-4 text-sm whitespace-nowrap sm:min-h-10 sm:gap-2 sm:px-5 font-medium text-white transition-colors hover:bg-zinc-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-zinc-600">
+                <a href="https://qicore.ai/careers" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-9 items-center font-mono lg:row-start-2 lg:self-center lg:justify-self-start justify-center gap-1.5 rounded-md bg-zinc-900 px-4 text-sm whitespace-nowrap sm:min-h-10 sm:gap-2 sm:px-5 font-medium text-white transition-colors hover:bg-zinc-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-zinc-600">
                   {en ? "Join us" : "加入我们"} <ArrowRight aria-hidden="true" className="size-3.5 sm:size-4" />
                 </a>
               </div>
             </div>
             <div data-reveal data-reveal-delay="200" className="max-md:order-2 md:col-start-2 md:row-span-2 md:row-start-1 lg:col-start-3 lg:row-span-3 lg:grid lg:grid-rows-subgrid">
-              <h2 className="flex h-8 items-center text-sm font-semibold text-zinc-900">{en ? "Subscribe to product updates" : "订阅产品动态"}</h2>
+              <h2 className="flex h-8 items-center text-sm font-semibold text-zinc-900">{en ? "Get Product Updates" : "订阅产品动态"}</h2>
               <form onSubmit={handleSubscribe} className="mt-4 md:mt-5 lg:mt-0">
                 <label htmlFor="introduce-subscribe-email" className="sr-only">{en ? "Email address" : "邮箱地址"}</label>
                 <div className="flex items-center gap-2 rounded-full border border-zinc-300 bg-white py-1.5 pr-1.5 pl-5 transition-colors focus-within:border-zinc-900">
@@ -163,7 +160,7 @@ export function IntroduceFooter() {
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
                     placeholder="you@email.com"
-                    className="min-w-0 flex-1 bg-transparent text-sm text-zinc-900 outline-none placeholder:text-zinc-400"
+                    className="min-w-0 flex-1 bg-transparent font-mono text-sm text-zinc-900 outline-none placeholder:text-zinc-400"
                   />
                   <button
                     type="submit"
@@ -179,24 +176,24 @@ export function IntroduceFooter() {
               {/* The status sits outside the form so a submit grows this small-print row, not the controls row the other columns centre on. */}
               <div className="mt-3 lg:mt-0">
                 {subscribeStatus === "success" ? (
-                  <p role="status" className="mb-1 text-xs font-medium text-emerald-600">
+                  <p role="status" className="mb-1 font-mono text-xs font-medium text-emerald-600">
                     {en ? "Thanks — you're on the list." : "已收到，感谢订阅。"}
                   </p>
                 ) : subscribeStatus === "rate_limited" || subscribeStatus === "error" ? (
-                  <p role="status" className="mb-1 text-xs font-medium text-red-600">
+                  <p role="status" className="mb-1 font-mono text-xs font-medium text-red-600">
                     {subscribeStatus === "rate_limited"
                       ? en ? "Too many requests — please try again in a minute." : "提交太频繁，请 1 分钟后再试。"
                       : en ? "Couldn't subscribe right now. Please try again later." : "发送失败，请稍后重试。"}
                   </p>
                 ) : null}
-                <p className="text-xs leading-5 text-zinc-500 max-md:text-pretty">
+                <p className="font-mono text-xs leading-5 text-zinc-500 max-md:text-pretty">
                   {en ? (
-                    "By subscribing you agree to receive product notifications. We will never use or sell your private information."
+                    "By subscribing, you agree to receive product updates. We’ll never sell your personal information."
                   ) : (
                     <>
                       订阅即表示您同意接收产品通知。
                       {/* One sentence per line on phones, so the wrap never strands a two-character orphan. */}
-                      <span className="max-md:block">我们绝不会使用或出售您的隐私信息。</span>
+                      <span className="max-md:block">我们绝不会出售您的隐私信息。</span>
                     </>
                   )}
                 </p>
@@ -204,7 +201,7 @@ export function IntroduceFooter() {
             </div>
             {/* Left-aligned: below lg this is the bottom bar, and the global feedback button floats over its right end.
                 Below md, pr-12 keeps the text out of that button's ~46px footprint, which it would reach under on a 320px screen. */}
-            <div data-reveal className="border-t border-zinc-300 pt-5 text-xs leading-5 text-zinc-500 max-md:order-4 max-md:pr-12 md:col-span-2 lg:col-span-1 lg:col-start-1 lg:row-start-3 lg:border-t-0 lg:pt-0">
+            <div data-reveal className="border-t border-zinc-300 pt-5 font-mono text-xs leading-5 text-zinc-500 max-md:order-4 max-md:pr-12 md:col-span-2 lg:col-span-1 lg:col-start-1 lg:row-start-3 lg:border-t-0 lg:pt-0">
               <p>© {new Date().getFullYear()} QiCore Technology. <span className="whitespace-nowrap">All rights reserved.</span></p>
             </div>
             <span aria-hidden="true" data-reveal data-reveal-delay="160" className="hidden w-px bg-zinc-300 lg:col-start-2 lg:row-span-3 lg:row-start-1 lg:block lg:justify-self-center" />

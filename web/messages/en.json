@@ -22,9 +22,9 @@
     "startAction": "Start Creating",
     "betaBanner": "Oyscat Workspace public beta coming soon",
     "qicoreHero": {
-      "title": "Focus on what you want to make, not what you know.",
-      "subtitle": "AI electrified making: standard modules, simulation-verified, ready to assemble",
-      "enterWorkspace": "Apply for Beta",
+      "title": "If you can imagine it, you can build it.",
+      "subtitle": "Oyscat is an AI-powered hardware creation system featuring standard electronic blocks, real-time simulation, and easy assembly.",
+      "enterWorkspace": "Request Beta Access",
       "sceneLabel": "3D module canvas",
       "sceneUnavailable": "3D scene unavailable",
       "testDrive": "Hold <keys></keys> to test-drive",

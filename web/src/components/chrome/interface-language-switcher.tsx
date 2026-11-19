@@ -33,7 +33,7 @@ export function InterfaceLanguageSwitcher({
 
   return (
     <div
-      className={compact ? "flex items-center gap-2" : "flex items-center gap-3"}
+      className={`font-mono ${compact ? "flex items-center gap-2" : "flex items-center gap-3"}`}
       role="group"
       aria-label={t("languageLabel")}
       data-testid="interface-language-switcher"

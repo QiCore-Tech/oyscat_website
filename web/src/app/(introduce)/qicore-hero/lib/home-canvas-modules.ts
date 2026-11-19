@@ -23,6 +23,10 @@ export const HOME_CANVAS_COLORS = [
   { key: "bottom", hex: "#A08FB5" },
   { key: "white", hex: "#F3F1EC" },
   { key: "black", hex: "#3A3D40" },
+  { key: "body", hex: "#FFFDFC" },
+  { key: "roof", hex: "#FFFDFC" },
+  { key: "seat", hex: "#191919" },
+  { key: "rearSeat", hex: "#6993E7" },
 ] as const;
 
 export type CanvasModuleId = (typeof HOME_CANVAS_MODULES)[number]["id"];

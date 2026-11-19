@@ -24,9 +24,9 @@ import { LANGUAGE_SWITCHER_ENABLED } from "@/lib/site"
 
 const CARD_PREVIEWS = [workspacePreview, moduleLibraryPreview, communityPreview]
 const CARD_ACCENTS = [
-  { bar: "bg-emerald-500", icon: "text-emerald-500" },
-  { bar: "bg-cyan-500", icon: "text-cyan-500" },
-  { bar: "bg-lime-500", icon: "text-lime-600" },
+  { color: "rgb(252, 198, 63)", bar: "bg-[#FCC63F]", icon: "text-[#FCC63F]" },
+  { color: "rgb(255, 108, 182)", bar: "bg-[#FF6CB6]", icon: "text-[#FF6CB6]" },
+  { color: "rgb(35, 96, 219)", bar: "bg-[#2360DB]", icon: "text-[#2360DB]" },
 ]
 // Back-face type scales with the card's own width, so narrow screens keep the
 // same wrapping and vertical fit as the 370px desktop design instead of
@@ -179,17 +179,17 @@ function IntroduceFaq() {
       <div data-slot="faq-container" className="mx-auto grid max-w-[calc(1120*var(--u))] grid-cols-1 gap-8 sm:gap-10">
         <div className="text-center">
           <h2 data-reveal id="faq-title" className="text-[length:calc(22*var(--u))] leading-[1.4] font-semibold text-balance sm:text-[length:calc(30*var(--u))]">
-            {locale === "en" ? "About Oyscat" : "关于 Oyscat"}
+            {locale === "en" ? "FAQ" : "关于 Oyscat"}
           </h2>
-          <p data-reveal data-reveal-delay="80" className="mt-4 text-sm leading-7 text-zinc-500 sm:text-base">
-            {locale === "en" ? "From your first idea to your next creation." : "从第一个想法，到下一次造物。"}
+          <p data-reveal data-reveal-delay="80" className="mt-4 font-heading text-sm leading-7 text-zinc-500 sm:text-base">
+            {locale === "en" ? "From your first idea to your next build." : "从第一个想法，到下一次造物。"}
           </p>
         </div>
         <Accordion.Root defaultValue={[]} className="min-w-0 border-t border-zinc-200" data-slot="faq-list">
           {INTRODUCE_FAQ[locale].map((item, index) => (
             <Accordion.Item data-reveal data-reveal-delay={index * 50} key={item.id} value={item.id} className="border-b border-zinc-200" data-slot="faq-item">
               <Accordion.Header>
-                <Accordion.Trigger data-slot="faq-question" className="group flex w-full cursor-pointer items-center justify-between gap-4 py-5 text-left text-base leading-7 font-medium text-zinc-900 outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-4 sm:py-6 sm:text-lg">
+                <Accordion.Trigger data-slot="faq-question" className="group flex w-full cursor-pointer items-center justify-between gap-4 py-5 text-left font-heading text-base leading-7 font-medium text-zinc-900 outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-4 sm:py-6 sm:text-lg">
                   <span className="min-w-0 break-words">{item.question}</span>
                   <ChevronDown aria-hidden="true" className="size-4 shrink-0 text-zinc-500 transition-transform duration-300 group-data-panel-open:rotate-180 motion-reduce:transition-none" />
                 </Accordion.Trigger>
@@ -217,33 +217,32 @@ export default function IntroducePage() {
   const backType = CARD_BACK_TYPE[locale === "en" ? "en" : "zh-CN"]
   const product = locale === "en"
     ? {
-        title: "From screen to reality, bring creations to life with ease",
+        title: "Off the screen. Into the real world.",
         cards: [
           {
             title: "Oyscat Workspace",
             paragraphs: [
-              "AI auto-modeling: describe your idea in one sentence and generate the creation model you want.",
-              "Manual modeling: intuitive drag-and-drop and building-block assembly give you the freedom to create.",
-              "All-in-one workspace: automatically write control programs and simulate in real time, closing the loop before you assemble the physical build.",
+              "Describe your idea or upload a reference image. AI generates the mechanism, electronics, and 3D design.",
+              "Control programs are auto-generated, with real-time simulation.",
+              "Test and refine your design before you build it.",
             ],
             imageLabel: "Oyscat Workspace image placeholder",
           },
           {
-            title: "Oyscat Electronic Modules",
+            title: "Oyscat Electronic Blocks",
             paragraphs: [
-              "Plug-and-play module library: actuators, lights, displays and power - combine freely with no barriers.",
-              "In-house microkernel: ultra-low-latency coordination, programs that can be rewritten repeatedly, and modules that drop straight into your next creation.",
-              "Auto-recognition and pairing: modules are discovered on connection - just rotate or flash them to pair.",
+              "Plug-and-play modules for motion, lighting, display, and power, etc. Combine them freely, no expertise required.",
+              "Our in-house microkernel keeps modules working together with minimal delay. Reprogram the modules and reuse them in your next project.",
             ],
-            imageLabel: "Oyscat Electronic Modules image placeholder",
+            imageLabel: "Oyscat Electronic Blocks image placeholder",
           },
           {
-            title: "Oyscat Creation Community",
+            title: "Oyscat Maker Community",
             paragraphs: [
-              "Share your ideas and meet more people who love to create.",
-              "More than sharing inspiration, order with a single tap and bring your favorite creations home.",
+              "Share your wildest ideas and meet people who love making.",
+              "More than inspiration. Order any creation you love with one click and bring it home.",
             ],
-            imageLabel: "Oyscat Creation Community image placeholder",
+            imageLabel: "Oyscat Maker Community image placeholder",
           },
         ],
       }
@@ -253,9 +252,9 @@ export default function IntroducePage() {
           {
             title: "Oyscat 工作台",
             paragraphs: [
-              "AI 自动建模：一句话生成你想要的造物模型",
-              "手动建模：直观的拖拽与积木式拼搭，赋予用户自由造物体验",
-              "一站式工作台：自动编写控制程序并实时仿真，实现组装实物前的全流程闭环验证",
+              "一句话描述你的想法，或上传一张参考图，AI 为你生成传动结构、电路方案和 3D 外观",
+              "自动生成控制程序，并实时仿真",
+              "在实物制作前，完成设计的验证与迭代",
             ],
             imageLabel: "Oyscat 工作台静态图占位",
           },
@@ -264,7 +263,6 @@ export default function IntroducePage() {
             paragraphs: [
               "即插即用的模块库：覆盖动作、灯光、显示与供电，自由组合无门槛",
               "自研微内核：实现超低延时协同，程序支持反复擦写，拆下的模块可随时拼进下一个造物",
-              "自动识别绑定：连接后自动发现模块，转动或闪灯即可完成配对",
             ],
             imageLabel: "Oyscat 电子模块静态图占位",
           },
@@ -324,7 +322,7 @@ export default function IntroducePage() {
                         hoverScale={1.02}
                         tiltMax={8}
                         glareOpacity={0.3}
-                        glareColor="color-mix(in srgb, #B1F33F 40%, white)"
+                        glareColor={CARD_ACCENTS[index].color}
                         background="#ffffff"
                         color="#18181b"
                         shadowOpacity={0.22}

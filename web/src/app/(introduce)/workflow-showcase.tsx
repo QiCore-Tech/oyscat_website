@@ -21,45 +21,45 @@ const WORKFLOW_CARDS: Record<Locale, WorkflowCardData[]> = {
   "zh-CN": [
     {
       id: "build",
-      title: "拼搭",
-      subtitle: <>AI自动建模，或手动拼搭<br />不同模块自由组合</>,
+      title: "沟通",
+      subtitle: "用一句话或一张图，告诉 AI Pilot 你想造什么",
     },
     {
       id: "code",
-      title: "编程",
-      subtitle: <>用自然语言描述期待的动作<br />AI 自动转化控制逻辑</>,
+      title: "生成",
+      subtitle: "AI 根据你的需求配置电子模块、写好控制程序，并生成 3D 模型。",
     },
     {
       id: "simulate",
       title: "仿真",
-      subtitle: <>在虚拟环境中验证动作与响应<br />让反复试错留在屏幕里</>,
+      subtitle: "在虚拟环境中验证动作与响应，让反复试错留在屏幕里",
     },
     {
       id: "assemble",
       title: "装配",
-      subtitle: <>将验证好的构想带到手中<br />按步骤轻松装配成真</>,
+      subtitle: "将验证好的构想带到手中，按步骤轻松装配成真",
     },
   ],
   en: [
     {
       id: "build",
-      title: "Build",
-      subtitle: "AI auto-modeling or manual assembly, combining modules freely",
+      title: "Chat",
+      subtitle: "Tell AI Pilot what you want to make, with sentences or images.",
     },
     {
       id: "code",
-      title: "Code",
-      subtitle: "Describe actions in natural language, AI generates control logic",
+      title: "Generate",
+      subtitle: "AI selects the Oyscat electronic blocks, writes the control program, and creates a 3D model for your project.",
     },
     {
       id: "simulate",
       title: "Simulate",
-      subtitle: "Validate motion and responses virtually before physical assembly",
+      subtitle: "Test how your design moves and responds in simulation. Work through trial and error on screen.",
     },
     {
       id: "assemble",
-      title: "Assemble",
-      subtitle: "Bring validated designs to your hands and assemble with ease",
+      title: "Build",
+      subtitle: "Follow the steps to assemble your design and bring it to life.",
     },
   ],
 }
@@ -203,7 +203,7 @@ export function WorkflowShowcase() {
         {/* Section Header: Minimalist Title Only */}
         <div className="relative z-10 mx-auto mb-4 sm:mb-8 flex w-full max-w-[1240px] flex-col items-center text-center">
           <h2 className="text-[length:calc(22*var(--u))] font-bold tracking-tight text-zinc-900 sm:text-[length:calc(30*var(--u))]">
-            {locale === "en" ? "One Idea. Four Steps to Reality." : "一个想法，四步走向现实"}
+            {locale === "en" ? "How Oyscat works? Simple Steps to Make Your Idea Real." : "一个想法，四步走向现实"}
           </h2>
         </div>
 
@@ -269,7 +269,7 @@ export function WorkflowShowcase() {
 
                     {/* 副标题 (Subtitle, Horizontally Centered; wraps into balanced lines when the card is too narrow).
                         The Chinese copy breaks at its clause comma instead: balancing split words (动/作, 响/应) and kept the lines narrow. */}
-                    <p className={`mt-2 sm:mt-3.5 w-full text-[10px] min-[380px]:text-[11px] sm:text-sm text-center text-balance leading-normal font-normal px-1 ${darkMedia ? "text-white/85" : media ? `text-zinc-800 ${LIGHT_MEDIA_TEXT_HALO}` : "text-zinc-700/90"}`}>
+                    <p className={`mt-2 sm:mt-3.5 w-full font-heading text-[10px] min-[380px]:text-[11px] sm:text-sm text-center text-balance leading-normal font-normal px-1 ${darkMedia ? "text-white/85" : media ? `text-zinc-800 ${LIGHT_MEDIA_TEXT_HALO}` : "text-zinc-700/90"}`}>
                       {card.subtitle}
                     </p>
                   </div>

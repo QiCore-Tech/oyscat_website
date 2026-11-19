@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import localFont from "next/font/local";
 import { useLocale, useTranslations } from "next-intl";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -12,17 +11,8 @@ import styles from "./components/home-voxel-canvas.module.css";
 import { CANVAS_COLUMNS, CANVAS_ROWS } from "./lib/home-vehicle-assembly";
 import { mountVoxelStore } from "./voxel-store";
 
-// Alibaba PuHuiTi, subset to the hero copy only.
-const heroFont = localFont({
-  src: [
-    { path: "./fonts/alibaba-puhuiti-hero-400.woff", weight: "400" },
-    { path: "./fonts/alibaba-puhuiti-hero-500.woff", weight: "500" },
-    { path: "./fonts/alibaba-puhuiti-hero-800.woff", weight: "800" },
-  ],
-  variable: "--font-qicore-hero",
-  display: "swap",
-  adjustFontFallback: false,
-});
+// Alibaba PuHuiTi was the hero's dedicated face; the site now uses the shared heading stack
+// (Outfit for Latin, HarmonyOS Sans SC for Chinese).
 
 export function QiCoreHero({ atTop }: { atTop: boolean }) {
   const t = useTranslations("introduce.qicoreHero");
@@ -44,7 +34,7 @@ export function QiCoreHero({ atTop }: { atTop: boolean }) {
       data-canvas-columns={CANVAS_COLUMNS}
       data-canvas-rows={CANVAS_ROWS}
       data-driver-side={lang === "en" ? "right" : "left"}
-      className={`${styles.canvas} ${heroFont.variable}`}
+      className={styles.canvas}
     >
       <div className={styles.heroLayout}>
         <div data-home-voxel-scene className={styles.scenePane}>

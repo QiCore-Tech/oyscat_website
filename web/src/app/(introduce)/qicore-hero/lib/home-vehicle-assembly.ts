@@ -66,7 +66,7 @@ function motion(entry: Offset, ease: VehicleEase = "glide", lift = 0): Motion {
 
 const flip = (value: number) => (value === 0 ? 0 : -value);
 
-// A boxy off-road SUV: sage green body, white roof, black roll cage and trim,
+// A boxy off-road SUV: blue body, pink roof, yellow seats, black roll cage and trim,
 // built from the ground up so that no part ever hangs in the air.
 export function createVehicleBlueprint(columns = CANVAS_COLUMNS, rows = CANVAS_ROWS): VehiclePart[] {
   const parts: VehiclePart[] = [];
@@ -169,28 +169,28 @@ export function createVehicleBlueprint(columns = CANVAS_COLUMNS, rows = CANVAS_R
   launch();
   add("tile", "back", [-1.75, -1.25, 3.5], [3.5, 0.5, 0.25], motion([0, 0, 4]));
   launch();
-  pair("cube", "front", [-1.75, 0, 2.5], [1.25, 1.25, 0.5], motion([0, 0, 5]));
+  pair("cube", "seat", [-1.75, 0, 2.5], [1.25, 1.25, 0.5], motion([0, 0, 5]));
   launch();
-  pair("tile", "front", [-1.75, 0.75, 3], [1.25, 0.5, 1.5], motion([0, 0, 5]));
+  pair("tile", "seat", [-1.75, 0.75, 3], [1.25, 0.5, 1.5], motion([0, 0, 5]));
   launch();
-  add("tile", "front", [-1.25, 3.25, 2.5], [2.5, 1, 1.5], motion([0, 0, 5]));
+  add("tile", "rearSeat", [-1.25, 3.25, 2.5], [2.5, 1, 1.5], motion([0, 0, 5]));
 
   // 6. 车身方块和板件：左右成对对称飞入，从下往上逐层生长
   const grow = motion([-4.5, 0, 1.5], "glide", 1);
   launch("body");
-  pair("beam", "left", [-2.5, -4.75, 2.5], [0.75, 3.5, 0.75], grow);
+  pair("beam", "body", [-2.5, -4.75, 2.5], [0.75, 3.5, 0.75], grow);
   launch();
-  pair("beam", "left", [-2.5, 1.25, 2.5], [0.75, 3.5, 0.75], grow);
+  pair("beam", "body", [-2.5, 1.25, 2.5], [0.75, 3.5, 0.75], grow);
   launch();
   add("beam", "black", [-1.75, -5.75, 2.5], [3.5, 0.25, 0.25], motion([0, -4, 0.5], "glide", 0.75));
   launch();
-  add("tile", "left", [-1.75, 5, 2.5], [3.5, 0.5, 1], motion([0, 4.5, 0.5], "glide", 0.75));
+  add("tile", "body", [-1.75, 5, 2.5], [3.5, 0.5, 1], motion([0, 4.5, 0.5], "glide", 0.75));
   launch();
-  pair("cube", "left", [-3, -5.75, 2.75], [1.25, 1, 0.75], grow);
+  pair("cube", "body", [-3, -5.75, 2.75], [1.25, 1, 0.75], grow);
   launch();
-  pair("longPlate", "left", [-3, -1.25, 2.75], [0.5, 2.5, 0.75], grow);
+  pair("longPlate", "body", [-3, -1.25, 2.75], [0.5, 2.5, 0.75], grow);
   launch();
-  pair("cube", "left", [-3, 4.75, 2.75], [1.25, 0.75, 0.75], grow);
+  pair("cube", "body", [-3, 4.75, 2.75], [1.25, 0.75, 0.75], grow);
   // The grille's vertical slats let the radiator show between them.
   for (const x of [-0.5, -1, -1.5]) {
     launch();
@@ -203,17 +203,17 @@ export function createVehicleBlueprint(columns = CANVAS_COLUMNS, rows = CANVAS_R
   }
   for (const [y, sx, sy] of [[-5.75, 1.25, 4.5], [-1.25, 0.5, 2.5], [1.25, 0.5, 4.25]] as const) {
     launch();
-    pair("longPlate", "left", [-3, y, 3.5], [sx, sy, 0.25], grow);
+    pair("longPlate", "body", [-3, y, 3.5], [sx, sy, 0.25], grow);
   }
   launch();
-  add("tile", "left", [-2.5, 5, 3.5], [5, 0.5, 0.5], motion([0, 4.5, 1], "glide", 0.75));
+  add("tile", "body", [-2.5, 5, 3.5], [5, 0.5, 0.5], motion([0, 4.5, 1], "glide", 0.75));
   launch();
-  add("tile", "left", [-3, -5.75, 3.75], [6, 2.25, 0.25], motion([0, 0, 4]));
+  add("tile", "body", [-3, -5.75, 3.75], [6, 2.25, 0.25], motion([0, 0, 4]));
   launch();
-  add("tile", "left", [-3, -3.5, 3.75], [6, 3, 0.25], motion([0, 0, 4]));
+  add("tile", "body", [-3, -3.5, 3.75], [6, 3, 0.25], motion([0, 0, 4]));
   for (const y of [-0.5, 2.5]) {
     launch();
-    pair("longPlate", "left", [-3, y, 3.75], [0.5, 3, 0.25], grow);
+    pair("longPlate", "body", [-3, y, 3.75], [0.5, 3, 0.25], grow);
   }
 
   // 7. 透明玻璃件：侧窗沿 x 侧向滑入，前后风挡斜向插入
@@ -232,9 +232,9 @@ export function createVehicleBlueprint(columns = CANVAS_COLUMNS, rows = CANVAS_R
     pair("column", "black", [-3, y, 4], [0.5, sy, 1.75], motion([0, 0, 4]));
   }
   launch();
-  add("thinPlate", "white", [-3, -1.25, 5.75], [6, 3.25, 0.25], motion([0, 0, 4.5]));
+  add("thinPlate", "roof", [-3, -1.25, 5.75], [6, 3.25, 0.25], motion([0, 0, 4.5]));
   launch();
-  add("thinPlate", "white", [-3, 2, 5.75], [6, 3.5, 0.25], motion([0, 0, 4.5]));
+  add("thinPlate", "roof", [-3, 2, 5.75], [6, 3.5, 0.25], motion([0, 0, 4.5]));
   launch();
   pair("beam", "black", [-3, -1.25, 6], [0.5, 6.75, 0.25], motion([0, 0, 3]));
 

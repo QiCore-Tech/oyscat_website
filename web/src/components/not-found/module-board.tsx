@@ -67,7 +67,7 @@ export function ModuleBoard({ label, missing }: { label: string; missing: string
   return (
     <div className="relative w-full max-w-[560px]" aria-hidden="true">
       <div className="grid gap-4 rounded-[24px] border border-zinc-200 bg-white px-[clamp(16px,5%,24px)] pt-5 pb-5 shadow-[12px_14px_0_#f4f4f5]">
-        <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 text-[11px] font-medium tracking-[0.14em] text-zinc-400">
+        <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 font-mono text-[11px] font-medium tracking-[0.14em] text-zinc-400">
           <span>{label}</span>
           <span>{missing}</span>
         </div>

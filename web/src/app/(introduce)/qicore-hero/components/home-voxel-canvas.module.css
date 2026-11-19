@@ -16,7 +16,7 @@
   padding: 0;
   overflow: hidden;
   background: #f2f4f4;
-  font-family: var(--font-introduce), var(--font-qicore-hero), "Microsoft YaHei", sans-serif;
+  font-family: var(--font-sans);
   -webkit-font-smoothing: auto;
   -moz-osx-font-smoothing: auto;
 }
@@ -113,6 +113,7 @@
   width: 100%;
   margin: 0;
   color: #111;
+  font-family: var(--font-heading);
   font-size: clamp(1.5rem, 3vw, 3.4 * var(--hero-rem));
   font-size: clamp(1.5rem, 6.5cqw, 3.4 * var(--hero-rem));
   font-weight: 800;
@@ -131,6 +132,7 @@
 .heroSubtitle {
   margin: calc(1.25 * var(--hero-rem)) 0 0;
   color: #555;
+  font-family: var(--font-heading);
   font-size: clamp(0.9375rem, 1.2vw, 1.125 * var(--hero-rem));
   font-size: clamp(0.9375rem, 2.6cqw, 1.125 * var(--hero-rem));
   font-weight: 400;
@@ -144,11 +146,11 @@
   margin-top: calc(2.25 * var(--hero-rem)) !important;
   height: calc(3 * var(--hero-rem)) !important;
   gap: calc(0.75 * var(--hero-rem));
-  border-color: #b3f142 !important;
-  background: #b3f142 !important;
+  border-color: transparent !important;
+  background: #111 !important;
   padding-inline: calc(2 * var(--hero-rem)) !important;
   border-radius: 999px !important;
-  color: #111 !important;
+  color: #fff !important;
   font-size: var(--hero-rem) !important;
   font-weight: 400 !important;
   box-shadow: none !important;
@@ -160,8 +162,9 @@
 }
 
 .heroButton:hover {
-  border-color: #a5de3d !important;
-  background: #a5de3d !important;
+  border-color: transparent !important;
+  background: #333 !important;
+  filter: none;
 }
 
 .heroButton:focus-visible {
